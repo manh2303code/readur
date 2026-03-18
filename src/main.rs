@@ -573,6 +573,7 @@ async fn main() -> anyhow::Result<()> {
         .route("/api/health", get(readur::health_check))
         .nest("/api/auth", readur::routes::auth::router())
         .nest("/api/documents", readur::routes::documents::router())
+        .nest("/api/documents", readur::routes::document_metadata::router())
         .nest("/api/ignored-files", readur::routes::ignored_files::ignored_files_routes())
         .nest("/api/labels", readur::routes::labels::router())
         .nest("/api/metrics", readur::routes::metrics::router())
