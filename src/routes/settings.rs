@@ -161,6 +161,7 @@ struct ServerConfiguration {
     enable_background_ocr: bool,
     version: String,
     build_info: Option<String>,
+    default_dia_danh: String,
 }
 
 #[utoipa::path(
@@ -225,6 +226,7 @@ async fn get_server_configuration(
         enable_background_ocr: user_settings.enable_background_ocr,
         version: env!("CARGO_PKG_VERSION").to_string(),
         build_info: option_env!("BUILD_INFO").map(|s| s.to_string()),
+        default_dia_danh: std::env::var("READUR_DEFAULT_DIA_DANH").unwrap_or_default(),
     };
 
     Ok(Json(server_config))
