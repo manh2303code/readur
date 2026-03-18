@@ -31,6 +31,10 @@ import PreviewTab from '../components/DocumentDetails/PreviewTab';
 import OcrTextTab from '../components/DocumentDetails/OcrTextTab';
 import DetailsTab from '../components/DocumentDetails/DetailsTab';
 import ActivityTab from '../components/DocumentDetails/ActivityTab';
+import { MetadataPanel } from '../components/DocumentMetadata';
+import { DocxExportButton } from '../components/DocxExport';
+import { getDocumentMetadata } from '../services/documentMetadataApi';
+import type { DocumentMetadata } from '../types/documentMetadata';
 
 const DocumentDetailsPage: React.FC = () => {
   const { t } = useTranslation();
@@ -48,6 +52,9 @@ const DocumentDetailsPage: React.FC = () => {
   const [ocrText, setOcrText] = useState<string>('');
   const [ocrData, setOcrData] = useState<OcrResponse | null>(null);
   const [ocrLoading, setOcrLoading] = useState<boolean>(false);
+
+  // Vietnamese administrative metadata
+  const [documentMetadata, setDocumentMetadata] = useState<DocumentMetadata | null>(null);
 
   // Processed image
   const [showProcessedImageDialog, setShowProcessedImageDialog] = useState<boolean>(false);
@@ -241,6 +248,16 @@ const DocumentDetailsPage: React.FC = () => {
     }
   };
 
+  const fetchDocumentMetadata = async (): Promise<void> => {
+    if (!id) return;
+    try {
+      const metadata = await getDocumentMetadata(id);
+      setDocumentMetadata(metadata);
+    } catch (error) {
+      console.error('Failed to fetch document metadata:', error);
+    }
+  };
+
   // --- Utilities ---
 
   const formatFileSize = (bytes: number): string => {
@@ -281,6 +298,12 @@ const DocumentDetailsPage: React.FC = () => {
   useEffect(() => {
     fetchAvailableLabels();
   }, []);
+
+  useEffect(() => {
+    if (document) {
+      fetchDocumentMetadata();
+    }
+  }, [document?.id]);
 
   // Auto-refresh during OCR processing
   useEffect(() => {
@@ -338,6 +361,13 @@ const DocumentDetailsPage: React.FC = () => {
           t={t}
         />
 
+        {/* DOCX export action */}
+        {documentMetadata && (
+          <Box sx={{ mb: 2 }}>
+            <DocxExportButton metadata={documentMetadata} ocrText={ocrText} />
+          </Box>
+        )}
+
         {/* Tabs */}
         <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 3 }}>
           <Tabs
@@ -356,6 +386,7 @@ const DocumentDetailsPage: React.FC = () => {
           >
             <Tab label={t('documentDetails.tabs.ocrText')} />
             <Tab label={t('documentDetails.tabs.preview')} />
+            <Tab label={t('metadata.title')} />
           </Tabs>
         </Box>
 
@@ -407,6 +438,10 @@ const DocumentDetailsPage: React.FC = () => {
               onViewProcessedImage={handleViewProcessedImage}
               t={t}
             />
+          )}
+
+          {tabValue === 2 && (
+            <MetadataPanel documentId={document.id} />
           )}
         </Box>
       </Container>
