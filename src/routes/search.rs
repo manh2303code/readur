@@ -45,7 +45,14 @@ async fn search_documents(
 ) -> Result<Json<SearchResponse>, SearchError> {
     // Validate query length (allow empty query if filters are present)
     let has_filters = search_request.tags.as_ref().map_or(false, |t| !t.is_empty())
-        || search_request.mime_types.as_ref().map_or(false, |m| !m.is_empty());
+        || search_request.mime_types.as_ref().map_or(false, |m| !m.is_empty())
+        || search_request.loai_van_ban.is_some()
+        || search_request.co_quan_ban_hanh.is_some()
+        || search_request.ngay_ban_hanh_from.is_some()
+        || search_request.ngay_ban_hanh_to.is_some()
+        || search_request.linh_vuc.is_some()
+        || search_request.do_mat.is_some()
+        || search_request.do_khan.is_some();
     if search_request.query.len() < 2 && !has_filters {
         return Err(SearchError::query_too_short(search_request.query.len(), 2));
     }
@@ -127,7 +134,14 @@ async fn enhanced_search_documents(
 ) -> Result<Json<SearchResponse>, StatusCode> {
     // Validate query length (allow empty query if filters are present)
     let has_filters = search_request.tags.as_ref().map_or(false, |t| !t.is_empty())
-        || search_request.mime_types.as_ref().map_or(false, |m| !m.is_empty());
+        || search_request.mime_types.as_ref().map_or(false, |m| !m.is_empty())
+        || search_request.loai_van_ban.is_some()
+        || search_request.co_quan_ban_hanh.is_some()
+        || search_request.ngay_ban_hanh_from.is_some()
+        || search_request.ngay_ban_hanh_to.is_some()
+        || search_request.linh_vuc.is_some()
+        || search_request.do_mat.is_some()
+        || search_request.do_khan.is_some();
     if search_request.query.len() < 2 && !has_filters {
         return Err(StatusCode::BAD_REQUEST);
     }

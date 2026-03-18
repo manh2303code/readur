@@ -57,6 +57,20 @@ pub struct SearchRequest {
     pub snippet_length: Option<i32>,
     /// Search algorithm to use (default: simple)
     pub search_mode: Option<SearchMode>,
+    /// Filter by document type (loai_van_ban)
+    pub loai_van_ban: Option<String>,
+    /// Filter by issuing authority (co_quan_ban_hanh), partial match
+    pub co_quan_ban_hanh: Option<String>,
+    /// Filter by issuance date from (ngay_ban_hanh_from), format: YYYY-MM-DD
+    pub ngay_ban_hanh_from: Option<String>,
+    /// Filter by issuance date to (ngay_ban_hanh_to), format: YYYY-MM-DD
+    pub ngay_ban_hanh_to: Option<String>,
+    /// Filter by domain/field (linh_vuc)
+    pub linh_vuc: Option<String>,
+    /// Filter by secrecy level (do_mat)
+    pub do_mat: Option<String>,
+    /// Filter by urgency level (do_khan)
+    pub do_khan: Option<String>,
 }
 
 #[derive(Debug, Serialize, Deserialize, ToSchema)]

@@ -11,7 +11,7 @@ impl Database {
     pub async fn search_documents(&self, user_id: Uuid, search_request: &SearchRequest) -> Result<Vec<Document>> {
         let mut query = QueryBuilder::<Postgres>::new("SELECT ");
         query.push(DOCUMENT_FIELDS);
-        query.push(" FROM documents WHERE user_id = ");
+        query.push(" FROM documents LEFT JOIN document_metadata dm ON documents.id = dm.document_id LEFT JOIN document_search_index dsi ON documents.id = dsi.document_id WHERE user_id = ");
         query.push_bind(user_id);
 
         // Add search conditions
@@ -20,7 +20,11 @@ impl Database {
             query.push_bind(&search_request.query);
             query.push(") OR to_tsvector('english', COALESCE(ocr_text, '')) @@ plainto_tsquery('english', ");
             query.push_bind(&search_request.query);
-            query.push("))");
+            query.push(") OR dsi.search_text_unaccent ILIKE '%' || unaccent(");
+            query.push_bind(&search_request.query);
+            query.push(") || '%' OR dsi.metadata_text_unaccent ILIKE '%' || unaccent(");
+            query.push_bind(&search_request.query);
+            query.push(") || '%')");
         }
 
         // Add label filtering (tags param contains label names)
@@ -41,8 +45,41 @@ impl Database {
             }
         }
 
+        // Add Vietnamese metadata filters
+        if let Some(ref v) = search_request.loai_van_ban {
+            query.push(" AND dm.loai_van_ban = ");
+            query.push_bind(v);
+        }
+        if let Some(ref v) = search_request.co_quan_ban_hanh {
+            query.push(" AND dm.co_quan_ban_hanh ILIKE '%' || ");
+            query.push_bind(v);
+            query.push(" || '%'");
+        }
+        if let Some(ref v) = search_request.ngay_ban_hanh_from {
+            query.push(" AND dm.ngay_ban_hanh >= ");
+            query.push_bind(v);
+            query.push("::date");
+        }
+        if let Some(ref v) = search_request.ngay_ban_hanh_to {
+            query.push(" AND dm.ngay_ban_hanh <= ");
+            query.push_bind(v);
+            query.push("::date");
+        }
+        if let Some(ref v) = search_request.linh_vuc {
+            query.push(" AND dm.linh_vuc = ");
+            query.push_bind(v);
+        }
+        if let Some(ref v) = search_request.do_mat {
+            query.push(" AND dm.do_mat = ");
+            query.push_bind(v);
+        }
+        if let Some(ref v) = search_request.do_khan {
+            query.push(" AND dm.do_khan = ");
+            query.push_bind(v);
+        }
+
         query.push(" ORDER BY created_at DESC");
-        
+
         let limit = search_request.limit.unwrap_or(25);
         let offset = search_request.offset.unwrap_or(0);
         apply_pagination(&mut query, limit, offset);
@@ -64,7 +101,7 @@ impl Database {
 
         let mut query = QueryBuilder::<Postgres>::new("SELECT ");
         query.push(DOCUMENT_FIELDS);
-        
+
         // Add search ranking if there's a query
         if !search_query.is_empty() {
             match search_request.search_mode.as_ref().unwrap_or(&SearchMode::Simple) {
@@ -93,7 +130,7 @@ impl Database {
             query.push(", 0.0 as search_rank");
         }
 
-        query.push(" FROM documents WHERE 1=1");
+        query.push(" FROM documents LEFT JOIN document_metadata dm ON documents.id = dm.document_id LEFT JOIN document_search_index dsi ON documents.id = dsi.document_id WHERE 1=1");
 
         apply_role_based_filter(&mut query, user_id, user_role);
 
@@ -105,26 +142,42 @@ impl Database {
                     query.push_bind(search_query);
                     query.push(") OR to_tsvector('english', COALESCE(ocr_text, '')) @@ plainto_tsquery('english', ");
                     query.push_bind(search_query);
-                    query.push("))");
+                    query.push(") OR dsi.search_text_unaccent ILIKE '%' || unaccent(");
+                    query.push_bind(search_query);
+                    query.push(") || '%' OR dsi.metadata_text_unaccent ILIKE '%' || unaccent(");
+                    query.push_bind(search_query);
+                    query.push(") || '%')");
                 }
                 SearchMode::Phrase => {
                     query.push(" AND (to_tsvector('english', COALESCE(content, '')) @@ phraseto_tsquery('english', ");
                     query.push_bind(search_query);
                     query.push(") OR to_tsvector('english', COALESCE(ocr_text, '')) @@ phraseto_tsquery('english', ");
                     query.push_bind(search_query);
-                    query.push("))");
+                    query.push(") OR dsi.search_text_unaccent ILIKE '%' || unaccent(");
+                    query.push_bind(search_query);
+                    query.push(") || '%' OR dsi.metadata_text_unaccent ILIKE '%' || unaccent(");
+                    query.push_bind(search_query);
+                    query.push(") || '%')");
                 }
                 SearchMode::Boolean => {
                     query.push(" AND (to_tsvector('english', COALESCE(content, '')) @@ to_tsquery('english', ");
                     query.push_bind(search_query);
                     query.push(") OR to_tsvector('english', COALESCE(ocr_text, '')) @@ to_tsquery('english', ");
                     query.push_bind(search_query);
-                    query.push("))");
+                    query.push(") OR dsi.search_text_unaccent ILIKE '%' || unaccent(");
+                    query.push_bind(search_query);
+                    query.push(") || '%' OR dsi.metadata_text_unaccent ILIKE '%' || unaccent(");
+                    query.push_bind(search_query);
+                    query.push(") || '%')");
                 }
                 SearchMode::Fuzzy => {
-                    query.push(" AND similarity(COALESCE(content, '') || ' ' || COALESCE(ocr_text, ''), ");
+                    query.push(" AND (similarity(COALESCE(content, '') || ' ' || COALESCE(ocr_text, ''), ");
                     query.push_bind(search_query);
-                    query.push(") > 0.3");
+                    query.push(") > 0.3 OR dsi.search_text_unaccent ILIKE '%' || unaccent(");
+                    query.push_bind(search_query);
+                    query.push(") || '%' OR dsi.metadata_text_unaccent ILIKE '%' || unaccent(");
+                    query.push_bind(search_query);
+                    query.push(") || '%')");
                 }
             }
         }
@@ -144,6 +197,39 @@ impl Database {
                 query.push_bind(mime_types);
                 query.push(")");
             }
+        }
+
+        // Add Vietnamese metadata filters
+        if let Some(ref v) = search_request.loai_van_ban {
+            query.push(" AND dm.loai_van_ban = ");
+            query.push_bind(v);
+        }
+        if let Some(ref v) = search_request.co_quan_ban_hanh {
+            query.push(" AND dm.co_quan_ban_hanh ILIKE '%' || ");
+            query.push_bind(v);
+            query.push(" || '%'");
+        }
+        if let Some(ref v) = search_request.ngay_ban_hanh_from {
+            query.push(" AND dm.ngay_ban_hanh >= ");
+            query.push_bind(v);
+            query.push("::date");
+        }
+        if let Some(ref v) = search_request.ngay_ban_hanh_to {
+            query.push(" AND dm.ngay_ban_hanh <= ");
+            query.push_bind(v);
+            query.push("::date");
+        }
+        if let Some(ref v) = search_request.linh_vuc {
+            query.push(" AND dm.linh_vuc = ");
+            query.push_bind(v);
+        }
+        if let Some(ref v) = search_request.do_mat {
+            query.push(" AND dm.do_mat = ");
+            query.push_bind(v);
+        }
+        if let Some(ref v) = search_request.do_khan {
+            query.push(" AND dm.do_khan = ");
+            query.push_bind(v);
         }
 
         query.push(" ORDER BY search_rank DESC, created_at DESC");
@@ -263,7 +349,7 @@ impl Database {
     pub async fn count_search_documents(&self, user_id: Uuid, user_role: UserRole, search_request: &SearchRequest) -> Result<i64> {
         let search_query = search_request.query.trim();
 
-        let mut query = QueryBuilder::<Postgres>::new("SELECT COUNT(*) FROM documents WHERE 1=1");
+        let mut query = QueryBuilder::<Postgres>::new("SELECT COUNT(*) FROM documents LEFT JOIN document_metadata dm ON documents.id = dm.document_id LEFT JOIN document_search_index dsi ON documents.id = dsi.document_id WHERE 1=1");
 
         apply_role_based_filter(&mut query, user_id, user_role);
 
@@ -275,26 +361,42 @@ impl Database {
                     query.push_bind(search_query);
                     query.push(") OR to_tsvector('english', COALESCE(ocr_text, '')) @@ plainto_tsquery('english', ");
                     query.push_bind(search_query);
-                    query.push("))");
+                    query.push(") OR dsi.search_text_unaccent ILIKE '%' || unaccent(");
+                    query.push_bind(search_query);
+                    query.push(") || '%' OR dsi.metadata_text_unaccent ILIKE '%' || unaccent(");
+                    query.push_bind(search_query);
+                    query.push(") || '%')");
                 }
                 SearchMode::Phrase => {
                     query.push(" AND (to_tsvector('english', COALESCE(content, '')) @@ phraseto_tsquery('english', ");
                     query.push_bind(search_query);
                     query.push(") OR to_tsvector('english', COALESCE(ocr_text, '')) @@ phraseto_tsquery('english', ");
                     query.push_bind(search_query);
-                    query.push("))");
+                    query.push(") OR dsi.search_text_unaccent ILIKE '%' || unaccent(");
+                    query.push_bind(search_query);
+                    query.push(") || '%' OR dsi.metadata_text_unaccent ILIKE '%' || unaccent(");
+                    query.push_bind(search_query);
+                    query.push(") || '%')");
                 }
                 SearchMode::Boolean => {
                     query.push(" AND (to_tsvector('english', COALESCE(content, '')) @@ to_tsquery('english', ");
                     query.push_bind(search_query);
                     query.push(") OR to_tsvector('english', COALESCE(ocr_text, '')) @@ to_tsquery('english', ");
                     query.push_bind(search_query);
-                    query.push("))");
+                    query.push(") OR dsi.search_text_unaccent ILIKE '%' || unaccent(");
+                    query.push_bind(search_query);
+                    query.push(") || '%' OR dsi.metadata_text_unaccent ILIKE '%' || unaccent(");
+                    query.push_bind(search_query);
+                    query.push(") || '%')");
                 }
                 SearchMode::Fuzzy => {
-                    query.push(" AND similarity(COALESCE(content, '') || ' ' || COALESCE(ocr_text, ''), ");
+                    query.push(" AND (similarity(COALESCE(content, '') || ' ' || COALESCE(ocr_text, ''), ");
                     query.push_bind(search_query);
-                    query.push(") > 0.3");
+                    query.push(") > 0.3 OR dsi.search_text_unaccent ILIKE '%' || unaccent(");
+                    query.push_bind(search_query);
+                    query.push(") || '%' OR dsi.metadata_text_unaccent ILIKE '%' || unaccent(");
+                    query.push_bind(search_query);
+                    query.push(") || '%')");
                 }
             }
         }
@@ -315,6 +417,39 @@ impl Database {
                 query.push_bind(mime_types);
                 query.push(")");
             }
+        }
+
+        // Add Vietnamese metadata filters
+        if let Some(ref v) = search_request.loai_van_ban {
+            query.push(" AND dm.loai_van_ban = ");
+            query.push_bind(v);
+        }
+        if let Some(ref v) = search_request.co_quan_ban_hanh {
+            query.push(" AND dm.co_quan_ban_hanh ILIKE '%' || ");
+            query.push_bind(v);
+            query.push(" || '%'");
+        }
+        if let Some(ref v) = search_request.ngay_ban_hanh_from {
+            query.push(" AND dm.ngay_ban_hanh >= ");
+            query.push_bind(v);
+            query.push("::date");
+        }
+        if let Some(ref v) = search_request.ngay_ban_hanh_to {
+            query.push(" AND dm.ngay_ban_hanh <= ");
+            query.push_bind(v);
+            query.push("::date");
+        }
+        if let Some(ref v) = search_request.linh_vuc {
+            query.push(" AND dm.linh_vuc = ");
+            query.push_bind(v);
+        }
+        if let Some(ref v) = search_request.do_mat {
+            query.push(" AND dm.do_mat = ");
+            query.push_bind(v);
+        }
+        if let Some(ref v) = search_request.do_khan {
+            query.push(" AND dm.do_khan = ");
+            query.push_bind(v);
         }
 
         let row: (i64,) = query.build_query_as().fetch_one(&self.pool).await?;
