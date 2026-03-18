@@ -45,6 +45,10 @@ RUN apt-get update && apt-get install -y \
     catdoc \
     && rm -rf /var/lib/apt/lists/*
 
+# Upgrade Vietnamese language data to tessdata_best for higher accuracy
+RUN curl -L -o /usr/share/tesseract-ocr/5/tessdata/vie.traineddata \
+    https://github.com/tesseract-ocr/tessdata_best/raw/main/vie.traineddata
+
 WORKDIR /app
 
 # Copy backend binary

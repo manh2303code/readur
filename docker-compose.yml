@@ -48,7 +48,8 @@ services:
       WATCH_FOLDER: /app/watch
       
       # OCR configuration
-      OCR_LANGUAGE: eng
+      OCR_LANGUAGE: vie+eng
+      READUR_DEFAULT_DIA_DANH: "Hà Nội"
       CONCURRENT_OCR_JOBS: 4
       OCR_TIMEOUT_SECONDS: 300
       MAX_FILE_SIZE_MB: 50
