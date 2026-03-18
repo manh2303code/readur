@@ -1554,6 +1554,14 @@
     "downloadDocx": "Tải DOCX",
     "quocHieu": "CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM",
     "tieuNgu": "Độc lập - Tự do - Hạnh phúc",
-    "noiNhan": "Nơi nhận"
+    "noiNhan": "Nơi nhận",
+    "noiNhanLabel": "Nơi nhận (cách nhau bởi dấu phẩy)",
+    "metadataSection": "Thông tin văn bản",
+    "soHieu": "Số hiệu",
+    "loaiVanBan": "Loại văn bản",
+    "coQuanBanHanh": "Cơ quan ban hành",
+    "ngayBanHanh": "Ngày ban hành",
+    "nguoiKy": "Người ký",
+    "trichYeu": "Trích yếu"
   }
 }

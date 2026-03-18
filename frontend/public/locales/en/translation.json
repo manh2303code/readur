@@ -1554,6 +1554,14 @@
     "downloadDocx": "Download DOCX",
     "quocHieu": "SOCIALIST REPUBLIC OF VIETNAM",
     "tieuNgu": "Independence - Freedom - Happiness",
-    "noiNhan": "Recipients"
+    "noiNhan": "Recipients",
+    "noiNhanLabel": "Recipients (comma-separated)",
+    "metadataSection": "Document Metadata",
+    "soHieu": "Document Number",
+    "loaiVanBan": "Document Type",
+    "coQuanBanHanh": "Issuing Authority",
+    "ngayBanHanh": "Issue Date",
+    "nguoiKy": "Signer",
+    "trichYeu": "Summary"
   }
 }
