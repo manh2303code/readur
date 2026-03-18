@@ -7,6 +7,7 @@ pub mod settings;
 pub mod source;
 pub mod source_error;
 pub mod responses;
+pub mod document_metadata;
 
 // Re-export commonly used types
 pub use user::*;
@@ -17,3 +18,4 @@ pub use source::*;
 pub use source_error::*;
 
 pub use responses::*;
+pub use document_metadata::*;
