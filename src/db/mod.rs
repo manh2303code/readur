@@ -15,6 +15,7 @@ pub mod images;
 pub mod ignored_files;
 pub mod constraint_validation;
 pub mod ocr_retry;
+pub mod document_metadata;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DatabasePoolHealth {
