@@ -68,6 +68,8 @@ import EnhancedSearchGuide from '../components/EnhancedSearchGuide';
 import MimeTypeFacetFilter from '../components/MimeTypeFacetFilter';
 import EnhancedSnippetViewer from '../components/EnhancedSnippetViewer';
 import AdvancedSearchPanel from '../components/AdvancedSearchPanel';
+import { MetadataFilters } from '../components/SearchFilters';
+import type { MetadataSearchFilters } from '../components/SearchFilters';
 
 interface Document {
   id: string;
@@ -198,6 +200,10 @@ const SearchPage: React.FC = () => {
   const [dateRange, setDateRange] = useState<number[]>([0, 365]); // days
   const [fileSizeRange, setFileSizeRange] = useState<number[]>([0, 100]); // MB
   const [hasOcr, setHasOcr] = useState<OcrStatus>('all');
+
+  // Metadata filter state
+  const [metadataFilters, setMetadataFilters] = useState<MetadataSearchFilters>({});
+  const [showMetadataFilters, setShowMetadataFilters] = useState<boolean>(false);
   
   // Available options (would typically come from API)
   const [availableTags, setAvailableTags] = useState<string[]>([]);
@@ -280,6 +286,14 @@ const SearchPage: React.FC = () => {
         include_snippets: advancedSettings.includeSnippets,
         snippet_length: advancedSettings.snippetLength,
         search_mode: advancedSettings.searchMode,
+        // Vietnamese metadata filters
+        loai_van_ban: metadataFilters.loai_van_ban || undefined,
+        co_quan_ban_hanh: metadataFilters.co_quan_ban_hanh || undefined,
+        ngay_ban_hanh_from: metadataFilters.ngay_ban_hanh_from || undefined,
+        ngay_ban_hanh_to: metadataFilters.ngay_ban_hanh_to || undefined,
+        linh_vuc: metadataFilters.linh_vuc || undefined,
+        do_mat: metadataFilters.do_mat || undefined,
+        do_khan: metadataFilters.do_khan || undefined,
       };
 
       const response = advancedSettings.useEnhancedSearch 
@@ -334,7 +348,7 @@ const SearchPage: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  }, [advancedSettings]);
+  }, [advancedSettings, metadataFilters]);
 
   const debouncedSearch = useCallback(
     debounce((query: string, filters: SearchFilters, page: number = 1, resetPage: boolean = false) => {
@@ -415,6 +429,7 @@ const SearchPage: React.FC = () => {
     setDateRange([0, 365]);
     setFileSizeRange([0, 100]);
     setHasOcr('all');
+    setMetadataFilters({});
     setCurrentPage(1);
   };
 
@@ -966,6 +981,28 @@ const SearchPage: React.FC = () => {
                     />
                   </AccordionDetails>
                 </Accordion>
+
+                {/* Vietnamese Metadata Filters */}
+                <Accordion
+                  expanded={showMetadataFilters}
+                  onChange={(_, expanded) => setShowMetadataFilters(expanded)}
+                >
+                  <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                    <Typography variant="subtitle2">{t('metadata.title')}</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails sx={{ p: 0 }}>
+                    <MetadataFilters
+                      onFilterChange={(filters) => {
+                        setMetadataFilters(filters);
+                        setCurrentPage(1);
+                      }}
+                      onClear={() => {
+                        setMetadataFilters({});
+                        setCurrentPage(1);
+                      }}
+                    />
+                  </AccordionDetails>
+                </Accordion>
               </Stack>
             </CardContent>
           </Card>
@@ -1283,6 +1320,35 @@ const SearchPage: React.FC = () => {
                                 <Typography variant="caption" color="text.secondary">
                                   {t('common.moreCount', { count: doc.tags.length - 3 })}
                                 </Typography>
+                              )}
+                            </Box>
+                          )}
+
+                          {/* Vietnamese Metadata Badges */}
+                          {((doc as any).loai_van_ban || (doc as any).co_quan_ban_hanh) && (
+                            <Box sx={{
+                              mb: 1,
+                              display: 'flex',
+                              flexWrap: 'wrap',
+                              gap: 0.5,
+                              alignItems: 'center',
+                            }}>
+                              {(doc as any).loai_van_ban && (
+                                <Chip
+                                  label={t(`metadata.loaiVanBanOptions.${(doc as any).loai_van_ban}`, { defaultValue: (doc as any).loai_van_ban })}
+                                  size="small"
+                                  color="secondary"
+                                  variant="outlined"
+                                  sx={{ fontSize: '0.7rem', height: '18px' }}
+                                />
+                              )}
+                              {(doc as any).co_quan_ban_hanh && (
+                                <Chip
+                                  label={(doc as any).co_quan_ban_hanh}
+                                  size="small"
+                                  variant="outlined"
+                                  sx={{ fontSize: '0.7rem', height: '18px' }}
+                                />
                               )}
                             </Box>
                           )}
