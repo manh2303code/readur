@@ -1,0 +1,1559 @@
+{
+  "common": {
+    "appName": "Readur",
+    "appTagline": "Nền tảng tài liệu AI",
+    "welcome": "Chào mừng đến {{appName}}",
+    "welcomeBack": "Chào mừng trở lại, {{username}}! 👋",
+    "or": "hoặc",
+    "copyright": "© 2026 Readur. Được hỗ trợ bởi công nghệ OCR và AI tiên tiến.",
+    "actions": {
+      "save": "Lưu",
+      "cancel": "Hủy",
+      "close": "Đóng",
+      "delete": "Xóa",
+      "edit": "Chỉnh sửa",
+      "view": "Xem",
+      "download": "Tải xuống",
+      "upload": "Tải lên",
+      "search": "Tìm kiếm",
+      "filter": "Lọc",
+      "sort": "Sắp xếp",
+      "clear": "Xóa bộ lọc",
+      "refresh": "Làm mới",
+      "retry": "Thử lại",
+      "create": "Tạo mới",
+      "update": "Cập nhật",
+      "viewDetails": "Xem chi tiết",
+      "back": "Quay lại"
+    },
+    "status": {
+      "loading": "Đang tải...",
+      "processing": "Đang xử lý...",
+      "completed": "Hoàn thành",
+      "failed": "Thất bại",
+      "pending": "Chờ xử lý",
+      "success": "Thành công",
+      "error": "Lỗi"
+    },
+    "time": {
+      "seconds": "{{count}} giây",
+      "minutes": "{{count}} phút",
+      "hours": "{{count}} giờ",
+      "days": "{{count}} ngày"
+    },
+    "sizes": {
+      "bytes": "{{count}} Byte",
+      "kb": "{{count}} KB",
+      "mb": "{{count}} MB",
+      "gb": "{{count}} GB"
+    },
+    "moreCount": "+{{count}} thêm",
+    "of": "trong",
+    "and": "và"
+  },
+  "auth": {
+    "signIn": "Đăng nhập",
+    "signingIn": "Đang đăng nhập...",
+    "signInToAccount": "Đăng nhập vào tài khoản của bạn",
+    "signInWithOIDC": "Đăng nhập bằng OIDC",
+    "redirecting": "Đang chuyển hướng...",
+    "username": "Tên đăng nhập",
+    "password": "Mật khẩu",
+    "usernameRequired": "Tên đăng nhập là bắt buộc",
+    "passwordRequired": "Mật khẩu là bắt buộc",
+    "logout": "Đăng xuất",
+    "profile": "Hồ sơ",
+    "intelligentDocumentPlatform": "Nền tảng quản lý tài liệu thông minh của bạn",
+    "errors": {
+      "invalidCredentials": "Tên đăng nhập hoặc mật khẩu không đúng. Vui lòng kiểm tra thông tin đăng nhập và thử lại.",
+      "accountDisabled": "Tài khoản của bạn đã bị vô hiệu hóa. Vui lòng liên hệ quản trị viên để được hỗ trợ.",
+      "userNotFound": "Không tìm thấy tài khoản với tên đăng nhập này. Vui lòng kiểm tra tên đăng nhập hoặc liên hệ bộ phận hỗ trợ.",
+      "sessionExpired": "Phiên làm việc của bạn đã hết hạn. Vui lòng đăng nhập lại.",
+      "networkError": "Lỗi mạng. Vui lòng kiểm tra kết nối và thử lại.",
+      "serverError": "Lỗi máy chủ. Vui lòng thử lại sau hoặc liên hệ bộ phận hỗ trợ nếu sự cố vẫn tiếp diễn.",
+      "oidcAuthFailed": "Xác thực OIDC thất bại. Vui lòng liên hệ quản trị viên.",
+      "oidcNotConfigured": "OIDC chưa được cấu hình trên máy chủ này. Vui lòng sử dụng đăng nhập bằng tên đăng nhập/mật khẩu.",
+      "oidcInitFailed": "Không thể khởi tạo đăng nhập OIDC. Vui lòng thử lại.",
+      "loginFailed": "Đăng nhập thất bại. Vui lòng kiểm tra thông tin đăng nhập."
+    }
+  },
+  "navigation": {
+    "dashboard": "Bảng điều khiển",
+    "upload": "Tải lên",
+    "documents": "Tài liệu",
+    "search": "Tìm kiếm",
+    "labels": "Nhãn",
+    "sources": "Nguồn",
+    "watchFolder": "Thư mục theo dõi",
+    "documentManagement": "Quản lý tài liệu",
+    "ignoredFiles": "Tệp bị bỏ qua"
+  },
+  "dashboard": {
+    "greeting": "Đây là tổng quan về tài liệu của bạn hôm nay.",
+    "stats": {
+      "totalDocuments": {
+        "title": "Tổng số tài liệu",
+        "subtitle": "Tệp trong thư viện của bạn",
+        "trend": "{{count}} tổng cộng",
+        "trendEmpty": "Chưa có tài liệu nào"
+      },
+      "storageUsed": {
+        "title": "Dung lượng đã dùng",
+        "subtitle": "Tổng kích thước tệp",
+        "trend": "Đã dùng {{size}}",
+        "trendEmpty": "Chưa sử dụng dung lượng"
+      },
+      "ocrProcessed": {
+        "title": "Đã xử lý OCR",
+        "subtitle": "Tài liệu đã trích xuất văn bản",
+        "trend": "{{percentage}}% hoàn thành",
+        "trendEmpty": "0% hoàn thành"
+      },
+      "searchable": {
+        "title": "Có thể tìm kiếm",
+        "subtitle": "Sẵn sàng để tìm kiếm",
+        "trend": "{{count}} đã lập chỉ mục",
+        "trendEmpty": "Chưa có gì được lập chỉ mục"
+      }
+    },
+    "recentDocuments": {
+      "title": "Tài liệu gần đây",
+      "viewAll": "Xem tất cả",
+      "noDocuments": "Chưa có tài liệu nào",
+      "uploadFirst": "Tải lên tài liệu đầu tiên để bắt đầu"
+    },
+    "quickActions": {
+      "title": "Thao tác nhanh",
+      "upload": {
+        "title": "Tải lên tài liệu",
+        "description": "Thêm tệp mới để xử lý OCR"
+      },
+      "search": {
+        "title": "Tìm kiếm thư viện",
+        "description": "Tìm tài liệu theo nội dung hoặc siêu dữ liệu"
+      },
+      "browse": {
+        "title": "Duyệt tài liệu",
+        "description": "Xem và quản lý thư viện tài liệu của bạn"
+      }
+    }
+  },
+  "search": {
+    "title": "Tìm kiếm tài liệu",
+    "placeholder": "Tìm kiếm tài liệu theo nội dung, tên tệp hoặc thẻ... Thử 'hóa đơn', 'hợp đồng', hoặc tag:quan-trong",
+    "searchPlaceholder": "Tìm kiếm tài liệu...",
+    "noResults": {
+      "title": "Không tìm thấy kết quả cho \"{{query}}\"",
+      "subtitle": "Thử điều chỉnh từ khóa hoặc bộ lọc của bạn",
+      "suggestions": {
+        "title": "Gợi ý:",
+        "simpler": "Thử các từ đơn giản hơn hoặc tổng quát hơn",
+        "spelling": "Kiểm tra chính tả và thử từ khóa khác",
+        "removeFilters": "Xóa một số bộ lọc để mở rộng tìm kiếm",
+        "useQuotes": "Dùng dấu ngoặc kép cho cụm từ chính xác"
+      }
+    },
+    "searching": "Đang tìm kiếm...",
+    "searchingAsYouType": "Đang tìm kiếm khi bạn gõ...",
+    "quickResults": "Kết quả nhanh",
+    "resultsCount": "Tìm thấy {{count}}",
+    "viewAllResults": "Xem tất cả kết quả cho \"{{query}}\"",
+    "recentSearches": "Tìm kiếm gần đây",
+    "startTyping": "Bắt đầu gõ để tìm kiếm tài liệu",
+    "popularSearches": "Tìm kiếm phổ biến:",
+    "noDocumentsFound": "Không tìm thấy tài liệu nào cho \"{{query}}\"",
+    "pressEnterAdvanced": "Nhấn Enter để tìm kiếm với các tùy chọn nâng cao",
+    "trySuggestions": "Thử các gợi ý sau:",
+    "settings": {
+      "title": "Cài đặt tìm kiếm"
+    },
+    "modes": {
+      "smart": "Thông minh",
+      "exactPhrase": "Cụm từ chính xác",
+      "similarWords": "Từ tương tự",
+      "advanced": "Nâng cao",
+      "enhanced": "Mở rộng"
+    },
+    "quickSuggestions": {
+      "title": "Gợi ý nhanh:"
+    },
+    "relatedSearches": {
+      "title": "Tìm kiếm liên quan:"
+    },
+    "filters": {
+      "title": "Bộ lọc",
+      "tags": "Thẻ",
+      "selectTags": "Chọn thẻ",
+      "ocrStatus": "Trạng thái OCR",
+      "ocrText": "Văn bản OCR",
+      "allDocuments": "Tất cả tài liệu",
+      "hasOcrText": "Có văn bản OCR",
+      "noOcrText": "Không có văn bản OCR",
+      "dateRange": "Khoảng thời gian",
+      "daysAgo": "Ngày trước: {{min}} - {{max}}",
+      "dateMarks": {
+        "today": "Hôm nay",
+        "30d": "30 ngày",
+        "90d": "90 ngày",
+        "1y": "1 năm"
+      },
+      "fileSize": "Kích thước tệp",
+      "sizeRange": "Kích thước: {{min}}MB - {{max}}MB"
+    },
+    "status": {
+      "searching": "Đang tìm kiếm...",
+      "resultsFound": "Tìm thấy {{count}} kết quả"
+    },
+    "display": {
+      "settings": "Cài đặt hiển thị",
+      "textSettings": "Cài đặt hiển thị văn bản",
+      "fontSizeLabel": "Cỡ chữ: {{size}}px",
+      "snippetsPerResult": "Đoạn trích mỗi kết quả: {{count}}",
+      "contextLength": "Độ dài ngữ cảnh: {{length}} ký tự",
+      "viewMode": {
+        "label": "Chế độ xem",
+        "compact": "Thu gọn",
+        "detailed": "Chi tiết",
+        "contextFocus": "Tập trung ngữ cảnh"
+      },
+      "highlightStyle": {
+        "label": "Kiểu đánh dấu",
+        "background": "Màu nền",
+        "underline": "Gạch chân",
+        "bold": "In đậm"
+      }
+    },
+    "results": {
+      "showing": "Đang hiển thị:",
+      "snippetsCount": "{{count}} đoạn trích",
+      "fontSize": "Chữ {{size}}px",
+      "hasOcr": " • OCR",
+      "tags": "Thẻ:",
+      "pagination": "Hiển thị {{start}}-{{end}} trong {{total}} kết quả"
+    },
+    "empty": {
+      "title": "Bắt đầu tìm kiếm tài liệu của bạn",
+      "subtitle": "Sử dụng thanh tìm kiếm mở rộng ở trên để tìm tài liệu theo nội dung, tên tệp hoặc thẻ"
+    },
+    "tips": {
+      "title": "Mẹo tìm kiếm:",
+      "exactPhrase": "Dùng dấu ngoặc kép cho cụm từ chính xác: \"kế hoạch dự án\"",
+      "tags": "Tìm kiếm theo thẻ: tag:quan-trong hoặc tag:hoa-don",
+      "combine": "Kết hợp các từ: hợp đồng AND thanh toán",
+      "wildcards": "Dùng ký tự đại diện: dự* cho dự án, dự thảo, v.v."
+    },
+    "examples": {
+      "invoice": "Thử: hóa đơn",
+      "contract": "Thử: hợp đồng",
+      "tagImportant": "Thử: tag:quan-trong"
+    },
+    "actions": {
+      "clearFilters": "Xóa bộ lọc",
+      "newSearch": "Tìm kiếm mới"
+    }
+  },
+  "upload": {
+    "title": "Tải lên tài liệu",
+    "subtitle": "Chuyển đổi tài liệu của bạn với xử lý OCR thông minh",
+    "features": {
+      "aiOcr": {
+        "title": "OCR được hỗ trợ bởi AI",
+        "description": "Trích xuất văn bản nâng cao từ mọi loại tài liệu"
+      },
+      "fullTextSearch": {
+        "title": "Tìm kiếm toàn văn",
+        "description": "Tìm tài liệu ngay lập tức theo nội dung hoặc siêu dữ liệu"
+      },
+      "lightningFast": {
+        "title": "Cực nhanh",
+        "description": "Xử lý tài liệu trong vài giây, không phải vài phút"
+      },
+      "secure": {
+        "title": "An toàn & Riêng tư",
+        "description": "Tài liệu của bạn được mã hóa và bảo vệ"
+      },
+      "multiLanguage": {
+        "title": "Đa ngôn ngữ",
+        "description": "Hỗ trợ hơn 100 ngôn ngữ và bộ ký tự"
+      }
+    },
+    "tips": {
+      "title": "📋 Mẹo tải lên",
+      "highRes": "• Để có kết quả OCR tốt nhất, hãy dùng ảnh độ phân giải cao",
+      "pdfText": "• Tệp PDF có lớp văn bản được xử lý nhanh hơn",
+      "clarity": "• Đảm bảo tài liệu đủ ánh sáng và rõ ràng",
+      "maxSize": "• Kích thước tệp tối đa là 50MB mỗi tài liệu"
+    },
+    "dropzone": {
+      "dragDrop": "Kéo & thả tệp vào đây",
+      "dropHere": "Thả tệp vào đây",
+      "browse": "hoặc nhấp để duyệt máy tính của bạn",
+      "chooseFiles": "Chọn tệp",
+      "maxFileSize": "Kích thước tệp tối đa: 50MB mỗi tệp",
+      "fileTypes": {
+        "pdf": "PDF",
+        "images": "Hình ảnh",
+        "text": "Văn bản",
+        "word": "Word"
+      }
+    },
+    "languageSettings": {
+      "title": "🌐 Cài đặt ngôn ngữ OCR",
+      "description": "Chọn ngôn ngữ để nhận dạng văn bản OCR tối ưu"
+    },
+    "labelAssignment": {
+      "title": "📋 Gán nhãn",
+      "description": "Chọn nhãn để tự động gán cho tất cả tài liệu được tải lên",
+      "placeholder": "Chọn nhãn cho tài liệu của bạn...",
+      "helperText": "Những nhãn này sẽ được áp dụng cho tất cả tài liệu được tải lên"
+    },
+    "fileList": {
+      "title": "Tệp ({{count}})",
+      "clearCompleted": "Xóa đã hoàn thành",
+      "uploading": "Đang tải lên... ({{completed}}/{{total}})",
+      "uploadingSimple": "Đang tải lên...",
+      "uploadAll": "Tải lên tất cả"
+    },
+    "errors": {
+      "sessionExpired": "Phiên làm việc của bạn đã hết hạn. Vui lòng làm mới trang và đăng nhập lại.",
+      "labelPermissionDenied": "Bạn không có quyền truy cập nhãn.",
+      "labelNetworkError": "Lỗi mạng khi tải nhãn. Vui lòng kiểm tra kết nối.",
+      "fileTooLarge": "Tệp quá lớn. Kích thước tối đa là 50MB.",
+      "unsupportedFormat": "Định dạng tệp không được hỗ trợ. Vui lòng dùng PDF, hình ảnh, văn bản hoặc tài liệu Word.",
+      "processingFailed": "Không thể xử lý tài liệu. Vui lòng thử lại hoặc liên hệ bộ phận hỗ trợ.",
+      "permissionDenied": "Bạn không có quyền tải lên tài liệu.",
+      "networkError": "Lỗi mạng. Vui lòng kiểm tra kết nối và thử lại.",
+      "serverError": "Lỗi máy chủ. Vui lòng thử lại sau."
+    }
+  },
+  "documents": {
+    "title": "Tài liệu",
+    "subtitle": "Quản lý và khám phá thư viện tài liệu của bạn",
+    "viewDocument": "Xem tài liệu",
+    "downloadDocument": "Tải xuống tài liệu",
+    "deleteDocument": "Xóa tài liệu",
+    "unknownDocument": "Tài liệu không xác định",
+    "search": {
+      "placeholder": "Tìm kiếm tài liệu..."
+    },
+    "selection": {
+      "select": "Chọn",
+      "cancel": "Hủy",
+      "count": "{{count}} trong {{total}} tài liệu đã chọn",
+      "selectAll": "Chọn tất cả",
+      "deselectAll": "Bỏ chọn tất cả",
+      "deleteSelected": "Xóa đã chọn ({{count}})"
+    },
+    "filters": {
+      "ocrStatus": "Trạng thái OCR",
+      "all": "Tất cả",
+      "completed": "Hoàn thành",
+      "processing": "Đang xử lý",
+      "failed": "Thất bại",
+      "pending": "Chờ xử lý"
+    },
+    "sort": {
+      "label": "Sắp xếp",
+      "newestFirst": "Mới nhất trước",
+      "oldestFirst": "Cũ nhất trước",
+      "nameAZ": "Tên A-Z",
+      "nameZA": "Tên Z-A",
+      "largestFirst": "Lớn nhất trước",
+      "smallestFirst": "Nhỏ nhất trước"
+    },
+    "ocrStatus": {
+      "confidence": "OCR {{percent}}%",
+      "done": "OCR Xong",
+      "processing": "Đang xử lý...",
+      "failed": "OCR Thất bại",
+      "pending": "Đang xếp hàng"
+    },
+    "actions": {
+      "editLabels": "Chỉnh sửa nhãn",
+      "retryOcr": "Thử lại OCR",
+      "retryingOcr": "Đang thử lại OCR...",
+      "retryHistory": "Lịch sử thử lại"
+    },
+    "empty": {
+      "title": "Không tìm thấy tài liệu",
+      "searchSubtitle": "Thử điều chỉnh từ khóa tìm kiếm",
+      "uploadSubtitle": "Tải lên tài liệu đầu tiên để bắt đầu"
+    },
+    "dialogs": {
+      "editLabels": {
+        "title": "Chỉnh sửa nhãn tài liệu",
+        "placeholder": "Chọn nhãn cho tài liệu này..."
+      },
+      "delete": {
+        "title": "Xóa tài liệu",
+        "message": "Bạn có chắc chắn muốn xóa \"{{filename}}\"?",
+        "warning": "Hành động này không thể hoàn tác. Tệp tài liệu và tất cả dữ liệu liên quan sẽ bị xóa vĩnh viễn.",
+        "deleting": "Đang xóa...",
+        "delete": "Xóa"
+      },
+      "bulkDelete": {
+        "title": "Xóa nhiều tài liệu",
+        "message": "Bạn có chắc chắn muốn xóa {{count}} tài liệu đã chọn{{plural}}?",
+        "warning": "Hành động này không thể hoàn tác. Tất cả tài liệu đã chọn và dữ liệu liên quan sẽ bị xóa vĩnh viễn.",
+        "listTitle": "Các tài liệu sẽ bị xóa:",
+        "moreCount": "... và {{count}} tài liệu khác",
+        "deleteButton": "Xóa {{count}} tài liệu{{plural}}"
+      }
+    },
+    "pagination": {
+      "showing": "Hiển thị {{start}}-{{end}} trong {{total}} tài liệu",
+      "withOcrStatus": " với trạng thái OCR: {{status}}",
+      "matching": " khớp với \"{{query}}\""
+    }
+  },
+  "documentDetails": {
+    "subtitle": "Phân tích tài liệu toàn diện và trình xem siêu dữ liệu",
+    "tabs": {
+      "preview": "Xem trước",
+      "ocrText": "Văn bản OCR",
+      "details": "Chi tiết",
+      "activity": "Hoạt động"
+    },
+    "actions": {
+      "backToDocuments": "Quay lại tài liệu",
+      "download": "Tải xuống",
+      "viewDocument": "Xem tài liệu",
+      "viewOcrText": "Xem văn bản OCR",
+      "viewProcessedImage": "Xem hình ảnh đã xử lý",
+      "retryOcr": "Thử lại OCR",
+      "retryHistory": "Lịch sử thử lại",
+      "editLabels": "Chỉnh sửa nhãn",
+      "deleteDocument": "Xóa tài liệu"
+    },
+    "errors": {
+      "notFound": "Không tìm thấy tài liệu"
+    },
+    "metadata": {
+      "fileSize": "Kích thước tệp",
+      "uploadDate": "Ngày tải lên",
+      "sourceType": "Loại nguồn",
+      "originalPath": "Đường dẫn gốc",
+      "originalCreated": "Tạo lúc ban đầu",
+      "originalModified": "Sửa đổi ban đầu",
+      "ocrStatus": "Trạng thái OCR",
+      "textExtracted": "Văn bản đã trích xuất"
+    },
+    "ocr": {
+      "title": "Văn bản đã trích xuất (OCR)",
+      "expandTooltip": "Mở rộng để xem toàn văn với tìm kiếm",
+      "expand": "Mở rộng",
+      "loading": "Đang tải phân tích OCR...",
+      "confidence": "Độ tin cậy",
+      "words": "Số từ",
+      "processingTime": "Thời gian xử lý",
+      "error": "Lỗi xử lý OCR",
+      "noText": "Không có văn bản OCR cho tài liệu này.",
+      "completed": "Xử lý hoàn thành: {{date}}",
+      "loadFailed": "Văn bản OCR có sẵn nhưng không thể tải. Vui lòng thử làm mới trang."
+    },
+    "tagsLabels": {
+      "title": "Thẻ & Nhãn",
+      "tags": "Thẻ",
+      "labels": "Nhãn",
+      "noLabels": "Không có nhãn nào được gán cho tài liệu này"
+    },
+    "dialogs": {
+      "ocrText": {
+        "title": "Văn bản đã trích xuất (OCR)",
+        "confidence": "{{percent}}% độ tin cậy",
+        "words": "{{count}} từ",
+        "loading": "Đang tải văn bản OCR...",
+        "error": "Lỗi OCR: {{message}}",
+        "noText": "Không có văn bản OCR cho tài liệu này.",
+        "processingTime": "Thời gian xử lý: {{time}}ms",
+        "completed": "Hoàn thành: {{date}}"
+      },
+      "ocrExpanded": {
+        "title": "Văn bản đã trích xuất (OCR) - Xem toàn màn hình",
+        "searchPlaceholder": "Tìm kiếm trong văn bản đã trích xuất...",
+        "matches": "Tìm thấy {{count}} kết quả{{plural}}",
+        "noMatches": "Không tìm thấy kết quả",
+        "loading": "Đang tải văn bản OCR...",
+        "error": "Lỗi OCR: {{message}}",
+        "noText": "Không có văn bản OCR cho tài liệu này."
+      },
+      "processedImage": {
+        "title": "Hình ảnh đã xử lý - Áp dụng tăng cường OCR",
+        "description": "Đây là hình ảnh được tăng cường đã được động cơ OCR xử lý thực tế. Bạn có thể điều chỉnh cài đặt tăng cường OCR trong trang Cài đặt.",
+        "noImage": "Không có hình ảnh đã xử lý"
+      },
+      "editLabels": {
+        "title": "Chỉnh sửa nhãn tài liệu",
+        "description": "Chọn nhãn để gán cho tài liệu này",
+        "placeholder": "Chọn nhãn cho tài liệu này...",
+        "saveLabels": "Lưu nhãn"
+      },
+      "delete": {
+        "title": "Xóa tài liệu",
+        "warning": "Hành động này không thể hoàn tác.",
+        "message": "Bạn có chắc chắn muốn xóa <strong>{{filename}}</strong>?",
+        "details": "Thao tác này sẽ xóa vĩnh viễn tài liệu và tất cả dữ liệu liên quan bao gồm văn bản OCR, nhãn và lịch sử xử lý.",
+        "deleting": "Đang xóa...",
+        "delete": "Xóa tài liệu"
+      }
+    }
+  },
+  "ignoredFiles": {
+    "title": "Tệp bị bỏ qua",
+    "subtitle": "Xem và quản lý các tệp đã bị bỏ qua có chủ ý trong quá trình xử lý",
+    "filters": {
+      "searchPlaceholder": "Tìm kiếm theo tên tệp hoặc đường dẫn...",
+      "reason": "Lý do",
+      "allReasons": "Tất cả lý do",
+      "duplicateHash": "Hash trùng lặp",
+      "tooLarge": "Quá lớn",
+      "unsupportedFormat": "Định dạng không hỗ trợ",
+      "excluded": "Bị loại trừ",
+      "permissionDenied": "Từ chối quyền",
+      "corrupted": "Tệp bị hỏng",
+      "other": "Khác"
+    },
+    "table": {
+      "filename": "Tên tệp",
+      "path": "Đường dẫn",
+      "reason": "Lý do",
+      "size": "Kích thước",
+      "ignoredAt": "Bị bỏ qua lúc"
+    },
+    "empty": {
+      "title": "Không có tệp bị bỏ qua",
+      "subtitle": "Không có tệp nào bị bỏ qua. Tất cả tệp đã xử lý đều được xử lý thành công."
+    },
+    "noResults": {
+      "title": "Không tìm thấy kết quả",
+      "subtitle": "Không có tệp bị bỏ qua nào khớp với bộ lọc hiện tại. Thử điều chỉnh tìm kiếm hoặc tiêu chí lọc."
+    },
+    "pagination": {
+      "showing": "Hiển thị {{start}}-{{end}} trong {{total}} tệp bị bỏ qua"
+    },
+    "errors": {
+      "loadFailed": "Không thể tải tệp bị bỏ qua",
+      "tryAgain": "Vui lòng thử lại sau"
+    },
+    "reasons": {
+      "duplicate_hash": "Hash trùng lặp - Tệp đã tồn tại trong hệ thống",
+      "file_too_large": "Tệp quá lớn - Vượt quá giới hạn kích thước tối đa",
+      "unsupported_format": "Định dạng không hỗ trợ - Loại tệp không được hỗ trợ",
+      "excluded_by_pattern": "Bị loại trừ - Tệp khớp với mẫu loại trừ",
+      "permission_denied": "Từ chối quyền - Không thể truy cập tệp",
+      "file_corrupted": "Tệp bị hỏng - Không thể đọc hoặc xử lý tệp",
+      "unknown": "Không xác định - Lý do không được chỉ định"
+    }
+  },
+  "documentManagement": {
+    "title": "Quản lý tài liệu",
+    "retryAll": "Thử lại tất cả tài liệu",
+    "retrying": "Đang thử lại tất cả...",
+    "retryFailedOnly": "Chỉ thử lại tài liệu thất bại",
+    "tabs": {
+      "failedDocuments": "Tài liệu thất bại",
+      "failedDocumentsTooltip": "Xem và quản lý các tài liệu thất bại trong quá trình xử lý (OCR, nhập liệu, xác thực, v.v.)",
+      "cleanup": "Dọn dẹp tài liệu",
+      "cleanupTooltip": "Quản lý và dọn dẹp tài liệu có vấn đề chất lượng - độ tin cậy OCR thấp hoặc xử lý thất bại",
+      "duplicates": "Tệp trùng lặp",
+      "duplicatesTooltip": "Xem và quản lý các nhóm tài liệu trùng lặp - các tài liệu có nội dung giống nhau",
+      "ignoredFiles": "Tệp bị bỏ qua",
+      "ignoredFilesTooltip": "Quản lý các tệp đã bị bỏ qua trong quá trình đồng bộ"
+    },
+    "stats": {
+      "totalFailed": "Tổng số thất bại",
+      "failureCategories": "Danh mục thất bại",
+      "noFailureData": "Không có dữ liệu thất bại"
+    },
+    "advancedRetry": {
+      "title": "Tùy chọn thử lại nâng cao",
+      "button": "Thử lại nâng cao",
+      "description": "Sử dụng bộ lọc nâng cao và tùy chọn chọn lọc để thử lại các tập hợp con cụ thể của tài liệu thất bại dựa trên loại tệp, lý do thất bại, kích thước và nhiều hơn nữa."
+    },
+    "filters": {
+      "title": "Tùy chọn lọc",
+      "stage": "Lọc theo giai đoạn",
+      "reason": "Lọc theo lý do",
+      "allStages": "Tất cả giai đoạn",
+      "allReasons": "Tất cả lý do",
+      "clearFilters": "Xóa bộ lọc",
+      "stages": {
+        "ocr": "Xử lý OCR",
+        "ingestion": "Nhập tài liệu",
+        "validation": "Xác thực",
+        "storage": "Lưu trữ tệp",
+        "processing": "Xử lý",
+        "sync": "Đồng bộ hóa"
+      },
+      "reasons": {
+        "duplicateContent": "Nội dung trùng lặp",
+        "lowConfidence": "Độ tin cậy OCR thấp",
+        "unsupportedFormat": "Định dạng không hỗ trợ",
+        "fileTooLarge": "Tệp quá lớn",
+        "fileCorrupted": "Tệp bị hỏng",
+        "ocrTimeout": "Hết thời gian OCR",
+        "pdfParsingError": "Lỗi phân tích PDF",
+        "other": "Khác"
+      }
+    },
+    "alerts": {
+      "noFailedTitle": "Tin tốt!",
+      "noFailedMessage": "Không có tài liệu nào thất bại khi xử lý OCR. Tất cả tài liệu của bạn đang được xử lý thành công.",
+      "overviewTitle": "Tổng quan tài liệu thất bại",
+      "overviewMessage": "Những tài liệu này thất bại ở các giai đoạn xử lý khác nhau: nhập liệu, xác thực, OCR, lưu trữ, v.v. Sử dụng bộ lọc ở trên để thu hẹp theo giai đoạn thất bại hoặc lý do cụ thể. Bạn có thể thử lại xử lý cho các lỗi có thể khắc phục."
+    },
+    "table": {
+      "document": "Tài liệu",
+      "failureType": "Loại thất bại",
+      "retryCount": "Số lần thử lại",
+      "lastFailed": "Thất bại lần cuối",
+      "actions": "Hành động",
+      "attempts": "{{count}} lần thử",
+      "unknown": "Không xác định"
+    },
+    "actions": {
+      "retryOcr": "Thử lại OCR",
+      "viewDetails": "Xem chi tiết",
+      "retryHistory": "Lịch sử thử lại",
+      "download": "Tải xuống tài liệu"
+    },
+    "details": {
+      "errorDetails": "Chi tiết lỗi",
+      "failureReason": "Lý do thất bại",
+      "notSpecified": "Không được chỉ định",
+      "ocrResults": "Kết quả OCR",
+      "confidencePercent": "{{percent}}% độ tin cậy",
+      "wordsFound": "Tìm thấy {{count}} từ",
+      "errorMessage": "Thông báo lỗi",
+      "noErrorMessage": "Không có thông báo lỗi",
+      "lastAttempt": "Lần thử cuối",
+      "noPreviousAttempts": "Không có lần thử trước",
+      "fileCreated": "Tệp tạo lúc"
+    },
+    "retry": {
+      "queuedSuccess": "Đã xếp hàng thử lại OCR cho \"{{filename}}\". Thời gian chờ ước tính: {{minutes}} phút.",
+      "unknown": "Không xác định",
+      "failed": "Thử lại OCR thất bại",
+      "processingFailed": "Không thể thử lại xử lý OCR",
+      "bulkSuccess": "Đã xếp hàng thành công {{count}} tài liệu để thử lại OCR. Thời gian xử lý ước tính: {{minutes}} phút.",
+      "noDocuments": "Không tìm thấy tài liệu để thử lại",
+      "bulkFailed": "Không thể thử lại tài liệu. Vui lòng thử lại.",
+      "requeuedSuccess": "Đã xếp hàng thành công {{count}} tài liệu thất bại để thử lại OCR. Kiểm tra thống kê hàng chờ để xem tiến trình.",
+      "noFailedDocuments": "Không tìm thấy tài liệu thất bại để thử lại",
+      "requeuedFailed": "Không thể thử lại tất cả tài liệu OCR thất bại",
+      "advancedSuccess": "Đã xếp hàng thành công {{queued}} trong {{matched}} tài liệu để thử lại. Thời gian xử lý ước tính: {{minutes}} phút."
+    },
+    "cleanup": {
+      "previewFailed": "Không thể xem trước tài liệu độ tin cậy thấp",
+      "noDocuments": "Không có tài liệu để xóa",
+      "deleteFailed": "Không thể xóa tài liệu độ tin cậy thấp",
+      "previewFailedDocs": "Không thể xem trước tài liệu thất bại",
+      "deleteFailedDocs": "Không thể xóa tài liệu thất bại"
+    },
+    "ignoredFiles": {
+      "removedSuccess": "Đã xóa tệp khỏi danh sách bị bỏ qua",
+      "deleteFailed": "Không thể xóa tệp bị bỏ qua",
+      "fileRemovedSuccess": "Đã xóa tệp khỏi danh sách bị bỏ qua",
+      "fileDeleteFailed": "Không thể xóa tệp bị bỏ qua"
+    },
+    "errors": {
+      "loadFailedDocuments": "Không thể tải tài liệu thất bại",
+      "sessionExpired": "Phiên làm việc của bạn đã hết hạn. Vui lòng làm mới trang và đăng nhập lại.",
+      "permissionDenied": "Bạn không có quyền xem tài liệu thất bại.",
+      "noFailedDocumentsFound": "Không tìm thấy tài liệu thất bại hoặc chúng có thể đã được xử lý.",
+      "networkError": "Lỗi mạng. Vui lòng kiểm tra kết nối và thử lại.",
+      "serverError": "Lỗi máy chủ. Vui lòng thử lại sau.",
+      "loadDuplicates": "Không thể tải tài liệu trùng lặp",
+      "permissionDeniedDuplicates": "Bạn không có quyền xem tài liệu trùng lặp.",
+      "documentNotFound": "Không tìm thấy tài liệu. Tài liệu có thể đã bị xóa hoặc đã được xử lý.",
+      "cannotRetry": "Không thể thử lại tài liệu do vấn đề xử lý. Vui lòng kiểm tra định dạng tài liệu.",
+      "permissionDeniedRetry": "Bạn không có quyền thử lại xử lý OCR.",
+      "serverErrorSupport": "Lỗi máy chủ. Vui lòng thử lại sau hoặc liên hệ bộ phận hỗ trợ.",
+      "loadIgnoredFiles": "Không thể tải tệp bị bỏ qua",
+      "permissionDeniedIgnored": "Bạn không có quyền xem tệp bị bỏ qua."
+    }
+  },
+  "watchFolder": {
+    "title": "Thư mục theo dõi",
+    "refreshAll": "Làm mới tất cả",
+    "retryFailedJobs": "Thử lại {{count}} công việc thất bại",
+    "requeuing": "Đang xếp lại hàng...",
+    "personalWatchDirectory": "Thư mục theo dõi cá nhân",
+    "admin": "Quản trị viên",
+    "directoryStatus": "Trạng thái thư mục",
+    "directoryExists": "Thư mục tồn tại",
+    "directoryMissing": "Thư mục không tồn tại",
+    "watchStatus": "Trạng thái theo dõi",
+    "enabled": "Đã bật",
+    "disabled": "Đã tắt",
+    "yourPersonalWatchDirectory": "Thư mục theo dõi cá nhân của bạn",
+    "directoryNotExist": "Thư mục theo dõi cá nhân của bạn chưa tồn tại. Tạo thư mục để bắt đầu tải tệp lên thư mục riêng của bạn.",
+    "creatingDirectory": "Đang tạo thư mục...",
+    "createPersonalDirectory": "Tạo thư mục cá nhân",
+    "unableToLoad": "Không thể tải thông tin thư mục theo dõi cá nhân. Vui lòng thử làm mới trang.",
+    "systemConfiguration": "Cấu hình hệ thống",
+    "globalWatchFolderConfiguration": "Cấu hình thư mục theo dõi toàn cầu",
+    "adminOnly": "Chỉ quản trị viên",
+    "systemWideInfo": "Đây là cấu hình thư mục theo dõi toàn hệ thống. Tất cả người dùng có thể xem thông tin này.",
+    "watchedDirectory": "Thư mục được theo dõi",
+    "status": "Trạng thái",
+    "active": "Đang hoạt động",
+    "inactive": "Không hoạt động",
+    "watchStrategy": "Chiến lược theo dõi",
+    "scanInterval": "Khoảng thời gian quét",
+    "seconds": "{{count}} giây",
+    "maxFileAge": "Tuổi tệp tối đa",
+    "hours": "{{count}} giờ",
+    "supportedFileTypes": "Loại tệp được hỗ trợ",
+    "processingQueue": "Hàng chờ xử lý",
+    "pending": "Chờ xử lý",
+    "processing": "Đang xử lý",
+    "failed": "Thất bại",
+    "completedToday": "Hoàn thành hôm nay",
+    "averageWaitTime": "Thời gian chờ trung bình",
+    "oldestPendingItem": "Mục chờ lâu nhất",
+    "lastUpdated": "Cập nhật lần cuối: {{time}}",
+    "howWatchFolderWorks": "Cách thư mục theo dõi hoạt động",
+    "watchFolderDescription": "Hệ thống thư mục theo dõi tự động giám sát thư mục đã cấu hình để tìm tệp mới và xử lý chúng bằng OCR.",
+    "processingPipeline": "Quy trình xử lý:",
+    "pipelineSteps": {
+      "fileDetection": "Phát hiện tệp: Tệp mới được phát hiện bằng cách theo dõi hỗn hợp (inotify + polling)",
+      "validation": "Xác thực: Tệp được kiểm tra định dạng được hỗ trợ và giới hạn kích thước",
+      "deduplication": "Loại trùng lặp: Hệ thống ngăn xử lý tệp trùng lặp",
+      "storage": "Lưu trữ: Tệp được chuyển vào hệ thống lưu trữ tài liệu",
+      "ocrQueue": "Hàng chờ OCR: Tài liệu được xếp hàng để xử lý OCR theo thứ tự ưu tiên"
+    },
+    "hybridStrategyInfo": "Hệ thống sử dụng chiến lược theo dõi hỗn hợp tự động phát hiện loại hệ thống tệp và chọn phương pháp giám sát tối ưu (inotify cho hệ thống tệp cục bộ, polling cho mount mạng)."
+  },
+  "settings": {
+    "title": "Cài đặt",
+    "apiDocumentation": "Tài liệu API",
+    "debug": "Gỡ lỗi",
+    "language": "Ngôn ngữ",
+    "selectLanguage": "Chọn ngôn ngữ",
+    "tabs": {
+      "general": "Chung",
+      "ocrSettings": "Cài đặt OCR",
+      "userManagement": "Quản lý người dùng",
+      "serverConfiguration": "Cấu hình máy chủ"
+    },
+    "general": {
+      "title": "Cài đặt chung",
+      "ocrConfiguration": {
+        "title": "Cấu hình OCR",
+        "description": "Cấu hình ngôn ngữ để trích xuất văn bản OCR. Nhiều ngôn ngữ giúp ích với tài liệu đa ngôn ngữ.",
+        "autoDetectLanguageCombination": "Tự động phát hiện kết hợp ngôn ngữ",
+        "autoDetectLanguageCombinationHelper": "Tự động đề xuất kết hợp ngôn ngữ tối ưu dựa trên phân tích nội dung tài liệu",
+        "concurrentOcrJobs": "Công việc OCR đồng thời",
+        "concurrentOcrJobsHelper": "Số công việc OCR có thể chạy đồng thời",
+        "ocrTimeout": "Thời gian chờ OCR (giây)",
+        "ocrTimeoutHelper": "Thời gian tối đa để xử lý OCR mỗi tệp",
+        "cpuPriority": "Ưu tiên CPU",
+        "cpuPriorityLow": "Thấp",
+        "cpuPriorityNormal": "Bình thường",
+        "cpuPriorityHigh": "Cao"
+      },
+      "ocrControls": {
+        "title": "Điều khiển xử lý OCR (Chỉ quản trị viên)",
+        "description": "Kiểm soát xử lý OCR để quản lý mức sử dụng CPU và cho phép người dùng dùng ứng dụng mà không ảnh hưởng đến hiệu suất.",
+        "pauseOcr": "Tạm dừng xử lý OCR",
+        "resumeOcr": "Tiếp tục xử lý OCR",
+        "ocrStatusLabel": "Trạng thái OCR: {{status}}",
+        "ocrPausedMessage": "Xử lý OCR đang bị tạm dừng. Không có công việc mới nào được xử lý.",
+        "ocrActiveMessage": "Xử lý OCR đang hoạt động. Tài liệu sẽ được xử lý tự động.",
+        "pausedAlertTitle": "Xử lý OCR đã tạm dừng",
+        "pausedAlertMessage": "Tài liệu mới sẽ không được xử lý để trích xuất văn bản OCR cho đến khi tiếp tục xử lý. Người dùng vẫn có thể tải lên và xem tài liệu, nhưng chức năng tìm kiếm có thể bị hạn chế."
+      },
+      "fileProcessing": {
+        "title": "Xử lý tệp",
+        "maxFileSize": "Kích thước tệp tối đa (MB)",
+        "maxFileSizeHelper": "Kích thước tệp tối đa được phép khi tải lên",
+        "memoryLimit": "Giới hạn bộ nhớ (MB)",
+        "memoryLimitHelper": "Giới hạn bộ nhớ mỗi công việc OCR",
+        "autoRotateImages": "Tự động xoay hình ảnh",
+        "autoRotateImagesHelper": "Tự động phát hiện và sửa hướng hình ảnh",
+        "enableImagePreprocessing": "Bật tiền xử lý hình ảnh",
+        "enableImagePreprocessingHelper": "Tăng cường hình ảnh để cải thiện độ chính xác OCR (làm thẳng, khử nhiễu, tăng độ tương phản)",
+        "preprocessingWarning": "⚠️ Cảnh báo: Bật tiền xử lý có thể thay đổi đáng kể kết quả văn bản OCR và có thể giảm độ chính xác cho một số tài liệu",
+        "enableBackgroundOcr": "Bật OCR nền",
+        "enableBackgroundOcrHelper": "Xử lý OCR ở nền sau khi tải tệp lên"
+      },
+      "searchConfiguration": {
+        "title": "Cấu hình tìm kiếm",
+        "resultsPerPage": "Kết quả mỗi trang",
+        "snippetLength": "Độ dài đoạn trích",
+        "snippetLengthHelper": "Số ký tự hiển thị trong bản xem trước kết quả tìm kiếm",
+        "fuzzySearchThreshold": "Ngưỡng tìm kiếm gần đúng",
+        "fuzzySearchThresholdHelper": "Độ chấp nhận lỗi chính tả (0.0-1.0)"
+      },
+      "storageManagement": {
+        "title": "Quản lý lưu trữ",
+        "retentionDays": "Số ngày lưu giữ",
+        "retentionDaysHelper": "Tự động xóa tài liệu sau X ngày (để trống để tắt)",
+        "enableAutoCleanup": "Bật dọn dẹp tự động",
+        "enableAutoCleanupHelper": "Tự động xóa tệp mồ côi và dọn dẹp lưu trữ",
+        "enableCompression": "Bật nén",
+        "enableCompressionHelper": "Nén tài liệu đã lưu để tiết kiệm không gian đĩa"
+      }
+    },
+    "ocrSettings": {
+      "title": "Cài đặt xử lý hình ảnh OCR",
+      "enhancementControls": {
+        "title": "Điều khiển tăng cường",
+        "skipEnhancement": "Bỏ qua tất cả tăng cường hình ảnh (Chỉ dùng hình ảnh gốc)",
+        "brightnessBoost": "Tăng cường độ sáng",
+        "brightnessBoostHelper": "Điều chỉnh độ sáng thủ công (0 = tự động, >0 = lượng tăng)",
+        "contrastMultiplier": "Hệ số tương phản",
+        "contrastMultiplierHelper": "Điều chỉnh tương phản thủ công (1.0 = tự động, >1.0 = tăng)",
+        "noiseReductionLevel": "Mức khử nhiễu",
+        "noiseReductionNone": "Không",
+        "noiseReductionLight": "Nhẹ",
+        "noiseReductionModerate": "Vừa phải",
+        "noiseReductionHeavy": "Mạnh",
+        "sharpeningStrength": "Cường độ làm sắc nét",
+        "sharpeningStrengthHelper": "Mức làm sắc nét hình ảnh (0 = tự động, >0 = thủ công)"
+      },
+      "qualityThresholds": {
+        "title": "Ngưỡng chất lượng (khi nào áp dụng tăng cường)",
+        "brightnessThreshold": "Ngưỡng độ sáng",
+        "brightnessThresholdHelper": "Tăng cường nếu độ sáng dưới giá trị này (0-255)",
+        "contrastThreshold": "Ngưỡng tương phản",
+        "contrastThresholdHelper": "Tăng cường nếu tương phản dưới giá trị này (0-1)",
+        "noiseThreshold": "Ngưỡng nhiễu",
+        "noiseThresholdHelper": "Tăng cường nếu nhiễu trên giá trị này (0-1)",
+        "sharpnessThreshold": "Ngưỡng độ sắc nét",
+        "sharpnessThresholdHelper": "Tăng cường nếu độ sắc nét dưới giá trị này (0-1)"
+      },
+      "advancedProcessing": {
+        "title": "Tùy chọn xử lý nâng cao",
+        "morphologicalOperations": "Phép toán hình thái (làm sạch văn bản)",
+        "histogramEqualization": "Cân bằng biểu đồ",
+        "saveProcessedImages": "Lưu hình ảnh đã xử lý để xem xét",
+        "adaptiveThresholdWindowSize": "Kích thước cửa sổ ngưỡng thích ứng",
+        "adaptiveThresholdWindowSizeHelper": "Kích thước cửa sổ để tăng cường tương phản (số lẻ)"
+      },
+      "imageSizeScaling": {
+        "title": "Kích thước và tỷ lệ hình ảnh",
+        "maxImageWidth": "Chiều rộng hình ảnh tối đa",
+        "maxImageWidthHelper": "Chiều rộng hình ảnh tối đa tính bằng pixel",
+        "maxImageHeight": "Chiều cao hình ảnh tối đa",
+        "maxImageHeightHelper": "Chiều cao hình ảnh tối đa tính bằng pixel",
+        "upscaleFactor": "Hệ số phóng to",
+        "upscaleFactorHelper": "Hệ số tỷ lệ hình ảnh (1.0 = không tỷ lệ)"
+      }
+    },
+    "userManagement": {
+      "title": "Quản lý người dùng",
+      "addUser": "Thêm người dùng",
+      "tableHeaders": {
+        "username": "Tên đăng nhập",
+        "email": "Email",
+        "createdAt": "Tạo lúc",
+        "watchDirectory": "Thư mục theo dõi",
+        "actions": "Hành động"
+      },
+      "watchDirectory": {
+        "statusActive": "Đang hoạt động",
+        "statusDisabled": "Đã tắt",
+        "statusNotCreated": "Chưa tạo",
+        "statusUnknown": "Không xác định",
+        "loading": "Đang tải...",
+        "createDirectory": "Tạo thư mục theo dõi",
+        "viewDirectory": "Xem thư mục theo dõi",
+        "removeDirectory": "Xóa thư mục theo dõi (Chỉ quản trị viên)",
+        "editUser": "Chỉnh sửa người dùng",
+        "deleteUser": "Xóa người dùng"
+      },
+      "dialogs": {
+        "createUser": "Tạo người dùng mới",
+        "editUser": "Chỉnh sửa người dùng",
+        "username": "Tên đăng nhập",
+        "email": "Email",
+        "password": "Mật khẩu",
+        "newPassword": "Mật khẩu mới (để trống để giữ mật khẩu hiện tại)"
+      },
+      "confirmRemoveDirectory": {
+        "title": "Xóa thư mục theo dõi",
+        "message": "Bạn có chắc chắn muốn xóa thư mục theo dõi của người dùng \"{{username}}\"? Hành động này không thể hoàn tác và sẽ dừng theo dõi thư mục của họ để tìm tệp mới.",
+        "removeButton": "Xóa thư mục"
+      }
+    },
+    "serverConfiguration": {
+      "title": "Cấu hình máy chủ (Chỉ quản trị viên)",
+      "fileUpload": {
+        "title": "Cấu hình tải tệp lên",
+        "maxFileSize": "Kích thước tệp tối đa",
+        "uploadPath": "Đường dẫn tải lên",
+        "allowedFileTypes": "Loại tệp được phép",
+        "watchFolder": "Thư mục theo dõi"
+      },
+      "ocrProcessing": {
+        "title": "Cấu hình xử lý OCR",
+        "concurrentOcrJobs": "Công việc OCR đồng thời",
+        "ocrTimeout": "Thời gian chờ OCR",
+        "memoryLimit": "Giới hạn bộ nhớ",
+        "ocrLanguage": "Ngôn ngữ OCR",
+        "cpuPriority": "Ưu tiên CPU",
+        "backgroundOcr": "OCR nền",
+        "enabled": "Đã bật",
+        "disabled": "Đã tắt"
+      },
+      "serverInformation": {
+        "title": "Thông tin máy chủ",
+        "serverHost": "Máy chủ",
+        "serverPort": "Cổng máy chủ",
+        "jwtSecret": "JWT Secret",
+        "configured": "Đã cấu hình",
+        "notSet": "Chưa thiết lập",
+        "version": "Phiên bản",
+        "buildInformation": "Thông tin bản dựng"
+      },
+      "watchFolderConfiguration": {
+        "title": "Cấu hình thư mục theo dõi",
+        "watchInterval": "Khoảng thời gian theo dõi",
+        "fileStabilityCheck": "Kiểm tra tính ổn định tệp",
+        "maxFileAge": "Tuổi tệp tối đa"
+      },
+      "refreshConfiguration": "Làm mới cấu hình",
+      "loadFailed": "Không thể tải cấu hình máy chủ. Có thể cần quyền quản trị viên."
+    },
+    "messages": {
+      "settingsUpdated": "Cài đặt đã được cập nhật thành công",
+      "settingsUpdateFailed": "Không thể cập nhật cài đặt",
+      "invalidLanguage": "Ngôn ngữ không hợp lệ. Vui lòng chọn từ các ngôn ngữ có sẵn.",
+      "valueOutOfRange": "{{message}}. {{suggestedAction}}",
+      "conflictingSettings": "Phát hiện cài đặt xung đột. Vui lòng xem xét cấu hình của bạn.",
+      "userCreated": "Người dùng đã được tạo thành công",
+      "userUpdated": "Người dùng đã được cập nhật thành công",
+      "userDeleted": "Người dùng đã được xóa thành công",
+      "cannotDeleteSelf": "Bạn không thể xóa tài khoản của chính mình",
+      "confirmDeleteUser": "Bạn có chắc chắn muốn xóa người dùng này?",
+      "duplicateUsername": "Tên đăng nhập này đã được sử dụng. Vui lòng chọn tên đăng nhập khác.",
+      "duplicateEmail": "Địa chỉ email này đã được sử dụng. Vui lòng dùng email khác.",
+      "invalidPassword": "Mật khẩu phải có ít nhất 8 ký tự với chữ hoa, chữ thường và số.",
+      "invalidEmail": "Vui lòng nhập địa chỉ email hợp lệ.",
+      "invalidUsername": "Tên đăng nhập chứa ký tự không hợp lệ. Vui lòng chỉ dùng chữ cái, số và dấu gạch dưới.",
+      "permissionDenied": "Bạn không có quyền thực hiện hành động này.",
+      "cannotDeleteUser": "Không thể xóa người dùng này: Họ có thể có dữ liệu liên quan hoặc là quản trị viên cuối cùng.",
+      "userNotFound": "Không tìm thấy người dùng. Họ có thể đã bị xóa.",
+      "watchDirectoryCreated": "Thư mục theo dõi đã được tạo thành công",
+      "watchDirectoryCreatedFailed": "Không thể tạo thư mục theo dõi",
+      "watchDirectoryAlreadyExists": "Thư mục theo dõi đã tồn tại cho người dùng này",
+      "watchDirectoryPath": "Thư mục theo dõi: {{path}}",
+      "watchDirectoryRemoved": "Thư mục theo dõi đã được xóa thành công",
+      "watchDirectoryRemoveFailed": "Không thể xóa thư mục theo dõi",
+      "watchDirectoryNotFound": "Không tìm thấy thư mục theo dõi hoặc đã bị xóa",
+      "ocrPaused": "Xử lý OCR đã tạm dừng thành công",
+      "ocrPauseFailed": "Cần quyền quản trị viên để tạm dừng xử lý OCR",
+      "ocrPauseFailedGeneric": "Không thể tạm dừng xử lý OCR",
+      "ocrResumed": "Xử lý OCR đã tiếp tục thành công",
+      "ocrResumeFailed": "Cần quyền quản trị viên để tiếp tục xử lý OCR",
+      "ocrResumeFailedGeneric": "Không thể tiếp tục xử lý OCR",
+      "serverConfigLoadFailed": "Cần quyền quản trị viên để xem cấu hình máy chủ",
+      "serverConfigLoadFailedGeneric": "Không thể tải cấu hình máy chủ"
+    }
+  },
+  "labels": {
+    "title": "Quản lý nhãn",
+    "loading": "Đang tải nhãn...",
+    "search": {
+      "placeholder": "Tìm kiếm nhãn..."
+    },
+    "filters": {
+      "systemLabels": "Nhãn hệ thống"
+    },
+    "sections": {
+      "systemLabels": "Nhãn hệ thống",
+      "myLabels": "Nhãn của tôi"
+    },
+    "badge": {
+      "system": "Hệ thống"
+    },
+    "stats": {
+      "documents": "Tài liệu: {{count}}",
+      "sources": "Nguồn: {{count}}"
+    },
+    "actions": {
+      "createLabel": "Tạo nhãn",
+      "editLabel": "Chỉnh sửa nhãn",
+      "deleteLabel": "Xóa nhãn"
+    },
+    "create": {
+      "title": "Tạo nhãn mới",
+      "editTitle": "Chỉnh sửa nhãn",
+      "nameLabel": "Tên nhãn",
+      "nameRequired": "Tên là bắt buộc",
+      "descriptionLabel": "Mô tả (tùy chọn)",
+      "colorLabel": "Màu sắc",
+      "customColorLabel": "Màu tùy chỉnh (hex)",
+      "iconLabel": "Biểu tượng (tùy chọn)",
+      "iconNone": "Không có",
+      "previewLabel": "Xem trước",
+      "cancel": "Hủy",
+      "create": "Tạo mới",
+      "update": "Cập nhật",
+      "saving": "Đang lưu..."
+    },
+    "selector": {
+      "placeholder": "Tìm kiếm hoặc tạo nhãn...",
+      "systemLabels": "Nhãn hệ thống",
+      "myLabels": "Nhãn của tôi",
+      "createLabel": "Tạo nhãn \"{{name}}\"",
+      "noLabelsFound": "Không tìm thấy nhãn",
+      "noLabelsMatch": "Không có nhãn nào khớp với \"{{query}}\"",
+      "noLabelsAvailable": "Không có nhãn nào"
+    },
+    "empty": {
+      "title": "Không tìm thấy nhãn",
+      "noMatch": "Không có nhãn nào khớp với \"{{query}}\"",
+      "noLabels": "Bạn chưa tạo nhãn nào",
+      "createFirst": "Tạo nhãn đầu tiên của bạn"
+    },
+    "dialogs": {
+      "delete": {
+        "title": "Xóa nhãn",
+        "message": "Bạn có chắc chắn muốn xóa nhãn \"{{name}}\"?",
+        "inUseWarning": " Nhãn này hiện đang được dùng bởi {{count}} tài liệu."
+      }
+    },
+    "errors": {
+      "sessionExpired": "Phiên làm việc của bạn đã hết hạn. Vui lòng đăng nhập lại.",
+      "permissionDenied": "Bạn không có quyền xem nhãn.",
+      "serverError": "Lỗi máy chủ. Vui lòng thử lại sau.",
+      "networkError": "Lỗi mạng. Vui lòng kiểm tra kết nối và thử lại.",
+      "loadFailed": "Không thể tải nhãn. Vui lòng kiểm tra kết nối.",
+      "notFound": "Không tìm thấy nhãn. Nhãn có thể đã bị xóa bởi người dùng khác.",
+      "duplicateName": "Nhãn có tên này đã tồn tại. Vui lòng chọn tên khác.",
+      "systemModification": "Nhãn hệ thống không thể chỉnh sửa. Chỉ nhãn do người dùng tạo mới có thể chỉnh sửa.",
+      "alreadyDeleted": "Không tìm thấy nhãn. Nhãn có thể đã bị xóa.",
+      "inUse": "Không thể xóa nhãn vì nó hiện đang được gán cho tài liệu. Vui lòng xóa nhãn khỏi tất cả tài liệu trước.",
+      "systemDelete": "Nhãn hệ thống không thể xóa. Chỉ nhãn do người dùng tạo mới có thể xóa.",
+      "invalidName": "Tên nhãn chứa ký tự không hợp lệ. Vui lòng chỉ dùng chữ cái, số và dấu câu cơ bản.",
+      "commaNotAllowed": "Tên nhãn không được chứa dấu phẩy.",
+      "invalidColor": "Định dạng màu không hợp lệ. Vui lòng dùng màu hex hợp lệ như #0969da.",
+      "maxLabelsReached": "Đã đạt số lượng nhãn tối đa. Vui lòng xóa một số nhãn trước khi tạo mới."
+    }
+  },
+  "notifications": {
+    "title": "Thông báo",
+    "markAllAsRead": "Đánh dấu tất cả đã đọc",
+    "clearAll": "Xóa tất cả",
+    "noNotifications": "Không có thông báo"
+  },
+  "ocr": {
+    "languageSelector": {
+      "label": "Ngôn ngữ OCR",
+      "loading": "Đang tải ngôn ngữ...",
+      "error": "Không thể tải ngôn ngữ OCR",
+      "retry": "Thử lại",
+      "fallback": "Tiếng Anh (Dự phòng)",
+      "current": "Hiện tại",
+      "languagesAvailable": "Có {{count}} ngôn ngữ{{plural}}",
+      "selectingWillUpdate": "Chọn \"{{language}}\" sẽ cập nhật ngôn ngữ mặc định của bạn"
+    }
+  },
+  "register": {
+    "title": "Tạo tài khoản Readur của bạn",
+    "fields": {
+      "username": "Tên đăng nhập",
+      "email": "Email",
+      "password": "Mật khẩu"
+    },
+    "placeholders": {
+      "username": "Tên đăng nhập",
+      "email": "Email",
+      "password": "Mật khẩu"
+    },
+    "actions": {
+      "signup": "Đăng ký",
+      "creating": "Đang tạo tài khoản..."
+    },
+    "links": {
+      "signin": "Đã có tài khoản? Đăng nhập"
+    },
+    "errors": {
+      "failed": "Đăng ký thất bại"
+    }
+  },
+  "debug": {
+    "title": "Gỡ lỗi xử lý tài liệu",
+    "subtitle": "Tải lên tài liệu hoặc phân tích tài liệu hiện có để khắc phục sự cố xử lý OCR",
+    "errors": {
+      "enterDocumentId": "Vui lòng nhập ID tài liệu",
+      "documentNotFound": "Không tìm thấy tài liệu {{documentId}}. Tài liệu có thể vẫn đang xử lý hoặc đã được chuyển sang tài liệu thất bại.",
+      "fetchFailed": "Không thể lấy thông tin gỡ lỗi: {{message}}",
+      "debugError": "Lỗi gỡ lỗi"
+    },
+    "upload": {
+      "title": "Tải tài liệu lên để phân tích gỡ lỗi",
+      "description": "Tải lên tệp PDF hoặc hình ảnh để phân tích quy trình xử lý theo thời gian thực",
+      "selectFile": "Vui lòng chọn tệp để tải lên",
+      "uploading": "Đang tải tệp lên...",
+      "uploadedStartingOcr": "Tài liệu đã tải lên thành công. Đang bắt đầu xử lý OCR...",
+      "uploadFailed": "Không thể tải tài liệu lên",
+      "uploadFailedStatus": "Tải lên thất bại",
+      "selectFileButton": "Chọn tệp",
+      "uploadDebugButton": "Tải lên & Gỡ lỗi",
+      "uploadingButton": "Đang tải lên...",
+      "uploadProgress": "Tiến trình tải lên: {{percent}}%",
+      "selected": "Đã chọn:",
+      "documentId": "ID tài liệu:"
+    },
+    "monitoring": {
+      "processingComplete": "Xử lý {{status}}!",
+      "ocrInProgress": "Đang xử lý OCR...",
+      "queuedForOcr": "Tài liệu đã được xếp hàng để xử lý OCR...",
+      "checkingStatus": "Đang kiểm tra trạng thái xử lý...",
+      "monitoringTimeout": "Dừng theo dõi (hết thời gian)"
+    },
+    "search": {
+      "title": "Gỡ lỗi tài liệu hiện có",
+      "description": "Nhập ID tài liệu để phân tích quy trình xử lý cho tài liệu hiện có",
+      "documentIdLabel": "ID tài liệu",
+      "documentIdPlaceholder": "ví dụ: 123e4567-e89b-12d3-a456-426614174000",
+      "debugButton": "Gỡ lỗi"
+    },
+    "tabs": {
+      "uploadAndDebug": "Tải lên & Gỡ lỗi",
+      "searchExisting": "Tìm kiếm hiện có",
+      "debugResults": "Kết quả gỡ lỗi"
+    },
+    "actions": {
+      "debugAnalysis": "Phân tích gỡ lỗi",
+      "showDebugDetails": "Hiện chi tiết gỡ lỗi",
+      "refreshStatus": "Làm mới trạng thái",
+      "viewDocument": "Xem tài liệu"
+    },
+    "document": {
+      "title": "Tài liệu: {{filename}}",
+      "status": "Trạng thái: {{status}}",
+      "debugRunAt": "Gỡ lỗi chạy lúc: {{timestamp}}"
+    },
+    "pipeline": {
+      "title": "Quy trình xử lý"
+    },
+    "steps": {
+      "fileInformation": {
+        "title": "Thông tin tệp",
+        "filename": "Tên tệp:",
+        "original": "Gốc:",
+        "size": "Kích thước:",
+        "mimeType": "Loại MIME:",
+        "fileExists": "Tệp tồn tại:",
+        "yes": "Có",
+        "no": "Không"
+      },
+      "fileMetadata": {
+        "title": "Siêu dữ liệu tệp",
+        "actualSize": "Kích thước thực tế:",
+        "isFile": "Là tệp:",
+        "modified": "Đã sửa đổi:",
+        "created": "Tạo lúc:",
+        "unknown": "Không xác định",
+        "notAvailable": "Siêu dữ liệu tệp không có sẵn"
+      },
+      "fileAnalysis": {
+        "title": "Phân tích tệp chi tiết",
+        "basicAnalysis": "Phân tích cơ bản",
+        "fileType": "Loại tệp:",
+        "size": "Kích thước:",
+        "readable": "Có thể đọc:",
+        "fileError": "Lỗi tệp:",
+        "pdfAnalysis": "Phân tích PDF",
+        "validPdf": "PDF hợp lệ:",
+        "pdfVersion": "Phiên bản PDF:",
+        "pages": "Trang:",
+        "hasText": "Có văn bản:",
+        "hasImages": "Có hình ảnh:",
+        "encrypted": "Đã mã hóa:",
+        "fontCount": "Số phông chữ:",
+        "textLength": "Độ dài văn bản:",
+        "chars": "ký tự",
+        "pdfTextExtractionError": "Lỗi trích xuất văn bản PDF:",
+        "textPreview": "Xem trước văn bản",
+        "fileContent": "Nội dung tệp",
+        "noPreview": "Không có bản xem trước cho loại tệp này"
+      },
+      "queueStatus": {
+        "title": "Trạng thái hàng chờ",
+        "userOcrEnabled": "OCR người dùng đã bật:",
+        "queueEntries": "Mục trong hàng chờ:",
+        "queueHistory": "Lịch sử hàng chờ",
+        "status": "Trạng thái",
+        "priority": "Ưu tiên",
+        "created": "Tạo lúc",
+        "started": "Bắt đầu",
+        "completed": "Hoàn thành",
+        "attempts": "Số lần thử",
+        "worker": "Công nhân xử lý"
+      },
+      "ocrResults": {
+        "title": "Kết quả OCR",
+        "textLength": "Độ dài văn bản:",
+        "characters": "ký tự",
+        "confidence": "Độ tin cậy:",
+        "wordCount": "Số từ:",
+        "processingTime": "Thời gian xử lý:",
+        "completedAt": "Hoàn thành lúc:",
+        "notCompleted": "Chưa hoàn thành",
+        "processingDetails": "Chi tiết xử lý",
+        "hasProcessedImage": "Có hình ảnh đã xử lý:",
+        "imageSize": "Kích thước hình ảnh:",
+        "fileSize": "Kích thước tệp:",
+        "processingSteps": "Các bước xử lý:",
+        "none": "Không có",
+        "processingParameters": "Tham số xử lý:"
+      },
+      "qualityValidation": {
+        "title": "Ngưỡng chất lượng",
+        "minConfidence": "Độ tin cậy tối thiểu:",
+        "brightness": "Độ sáng:",
+        "contrast": "Tương phản:",
+        "noise": "Nhiễu:",
+        "sharpness": "Độ sắc nét:",
+        "actualValues": "Giá trị thực tế",
+        "confidence": "Độ tin cậy:",
+        "wordCount": "Số từ:",
+        "processedImageAvailable": "Hình ảnh đã xử lý có sẵn:",
+        "qualityChecks": "Kiểm tra chất lượng"
+      }
+    },
+    "failedDocument": {
+      "title": "Thông tin tài liệu thất bại",
+      "failureDetails": "Chi tiết thất bại",
+      "failureReason": "Lý do thất bại:",
+      "failureStage": "Giai đoạn thất bại:",
+      "retryCount": "Số lần thử lại:",
+      "created": "Tạo lúc:",
+      "lastRetry": "Thử lại lần cuối:",
+      "failedOcrResults": "Kết quả OCR thất bại",
+      "ocrTextLength": "Độ dài văn bản OCR:",
+      "ocrConfidence": "Độ tin cậy OCR:",
+      "wordCount": "Số từ:",
+      "processingTime": "Thời gian xử lý:",
+      "noOcrResults": "Không có kết quả OCR",
+      "errorMessage": "Thông báo lỗi:",
+      "contentPreview": "Xem trước nội dung"
+    },
+    "processingLogs": {
+      "title": "Nhật ký xử lý chi tiết",
+      "description": "Lịch sử đầy đủ của tất cả các lần thử xử lý OCR cho tài liệu này",
+      "attempt": "Lần thử",
+      "status": "Trạng thái",
+      "priority": "Ưu tiên",
+      "created": "Tạo lúc",
+      "started": "Bắt đầu",
+      "completed": "Hoàn thành",
+      "duration": "Thời lượng",
+      "waitTime": "Thời gian chờ",
+      "attempts": "Số lần thử",
+      "worker": "Công nhân xử lý",
+      "error": "Lỗi"
+    },
+    "fileAnalysisSummary": {
+      "title": "Tóm tắt phân tích tệp",
+      "fileProperties": "Thuộc tính tệp",
+      "fileType": "Loại tệp:",
+      "size": "Kích thước:",
+      "readable": "Có thể đọc:",
+      "pdfProperties": "Thuộc tính PDF",
+      "validPdf": "PDF hợp lệ:",
+      "hasTextContent": "Có nội dung văn bản:",
+      "textLength": "Độ dài văn bản:",
+      "pageCount": "Số trang:",
+      "encrypted": "Đã mã hóa:",
+      "pdfTextExtractionIssue": "Vấn đề trích xuất văn bản PDF:"
+    },
+    "processedImages": {
+      "title": "Hình ảnh đã xử lý",
+      "originalDocument": "Tài liệu gốc",
+      "processedImage": "Hình ảnh đã xử lý (Đầu vào OCR)",
+      "notAvailable": "Hình ảnh đã xử lý không có sẵn"
+    },
+    "userSettings": {
+      "title": "Cài đặt người dùng",
+      "ocrSettings": "Cài đặt OCR",
+      "backgroundOcr": "OCR nền:",
+      "enabled": "Đã bật",
+      "disabled": "Đã tắt",
+      "minConfidence": "Độ tin cậy tối thiểu:",
+      "maxFileSize": "Kích thước tệp tối đa:",
+      "qualityThresholds": "Ngưỡng chất lượng",
+      "brightness": "Độ sáng:",
+      "contrast": "Tương phản:",
+      "noise": "Nhiễu:",
+      "sharpness": "Độ sắc nét:"
+    },
+    "preview": "Xem trước"
+  },
+  "sources": {
+    "title": "Nguồn tài liệu",
+    "subtitle": "Kết nối và quản lý nguồn tài liệu của bạn với đồng bộ thông minh",
+    "empty": {
+      "title": "Chưa có nguồn nào được cấu hình",
+      "subtitle": "Kết nối nguồn tài liệu đầu tiên của bạn để bắt đầu tự động đồng bộ và xử lý tệp bằng OCR được hỗ trợ bởi AI.",
+      "addFirst": "Thêm nguồn đầu tiên của bạn"
+    },
+    "actions": {
+      "addSource": "Thêm nguồn",
+      "editSource": "Chỉnh sửa nguồn",
+      "deleteSource": "Xóa nguồn",
+      "testConnection": "Kiểm tra kết nối",
+      "testing": "Đang kiểm tra...",
+      "saveSource": "Lưu nguồn",
+      "createSource": "Tạo nguồn",
+      "updateSource": "Cập nhật nguồn",
+      "triggerSync": "Kích hoạt đồng bộ",
+      "stopSync": "Dừng đồng bộ",
+      "viewIgnoredFiles": "Xem tệp bị bỏ qua",
+      "runValidation": "Chạy kiểm tra xác thực",
+      "quickSync": "Đồng bộ nhanh",
+      "deepScan": "Quét sâu"
+    },
+    "status": {
+      "autoRefreshing": "Đang tự động làm mới...",
+      "disabled": "Đã tắt",
+      "syncing": "Đang đồng bộ",
+      "error": "Lỗi",
+      "idle": "Không hoạt động"
+    },
+    "ocr": {
+      "pause": "Tạm dừng OCR",
+      "resume": "Tiếp tục OCR",
+      "pausedSuccess": "Xử lý OCR đã tạm dừng thành công",
+      "pauseFailed": "Không thể tạm dừng xử lý OCR",
+      "resumedSuccess": "Xử lý OCR đã tiếp tục thành công",
+      "resumeFailed": "Không thể tiếp tục xử lý OCR"
+    },
+    "stats": {
+      "documentsStored": "Tài liệu đã lưu trữ",
+      "documentsStoredTooltip": "Tổng số tài liệu hiện đang được lưu trữ từ nguồn này",
+      "ocrProcessed": "Đã xử lý OCR",
+      "ocrProcessedTooltip": "Số tài liệu đã được OCR thành công",
+      "ocrCount": "{{count}} đã OCR",
+      "lastSync": "Đồng bộ lần cuối",
+      "lastSyncTooltip": "Lần cuối nguồn này được đồng bộ",
+      "never": "Chưa bao giờ",
+      "filesPending": "Tệp đang chờ",
+      "filesPendingTooltip": "Tệp đã phát hiện nhưng chưa xử lý trong quá trình đồng bộ",
+      "totalSize": "Tổng kích thước",
+      "totalSizeTooltip": "Tổng kích thước tệp đã tải xuống thành công từ nguồn này"
+    },
+    "types": {
+      "webdav": {
+        "name": "WebDAV",
+        "description": "Nextcloud, ownCloud và các máy chủ WebDAV khác"
+      },
+      "localFolder": {
+        "name": "Thư mục cục bộ",
+        "description": "Giám sát các thư mục hệ thống tệp cục bộ"
+      },
+      "s3": {
+        "name": "Tương thích S3",
+        "description": "AWS S3, MinIO và các lưu trữ tương thích S3 khác"
+      }
+    },
+    "form": {
+      "sourceName": "Tên nguồn",
+      "sourceType": "Loại nguồn",
+      "sourceEnabled": "Nguồn đã bật",
+      "sourceEnabledHelper": "Bật nguồn này để đồng bộ",
+      "sourceNamePlaceholder": "Máy chủ tài liệu của tôi"
+    },
+    "webdav": {
+      "title": "Cấu hình WebDAV",
+      "serverUrl": "URL máy chủ",
+      "username": "Tên đăng nhập",
+      "password": "Mật khẩu",
+      "serverType": "Loại máy chủ",
+      "serverTypes": {
+        "nextcloud": "Nextcloud",
+        "nextcloudDesc": "Tối ưu hóa cho máy chủ Nextcloud",
+        "owncloud": "ownCloud",
+        "owncloudDesc": "Tối ưu hóa cho máy chủ ownCloud",
+        "generic": "WebDAV chung",
+        "genericDesc": "Bất kỳ máy chủ WebDAV tiêu chuẩn nào"
+      }
+    },
+    "localFolder": {
+      "title": "Cấu hình thư mục cục bộ",
+      "description": "Giám sát các thư mục hệ thống tệp cục bộ để tìm tài liệu mới. Đảm bảo ứng dụng có quyền đọc các đường dẫn được chỉ định.",
+      "recursive": "Quét đệ quy",
+      "recursiveDesc": "Quét các thư mục con đệ quy",
+      "followSymlinks": "Theo dõi liên kết tượng trưng",
+      "followSymlinksDesc": "Theo dõi symlink khi quét thư mục"
+    },
+    "s3": {
+      "title": "Cấu hình lưu trữ tương thích S3",
+      "description": "Kết nối với AWS S3, MinIO hoặc bất kỳ dịch vụ lưu trữ tương thích S3 nào. Đối với MinIO, cung cấp URL endpoint của máy chủ.",
+      "bucketName": "Tên bucket",
+      "region": "Vùng",
+      "accessKeyId": "ID khóa truy cập",
+      "secretAccessKey": "Khóa truy cập bí mật",
+      "endpointUrl": "URL endpoint (Tùy chọn)",
+      "endpointUrlHelper": "Để trống cho AWS S3, hoặc cung cấp endpoint tùy chỉnh cho MinIO/lưu trữ tương thích S3 khác",
+      "objectPrefix": "Tiền tố khóa đối tượng (Tùy chọn)",
+      "objectPrefixHelper": "Tiền tố tùy chọn để giới hạn quét theo khóa đối tượng cụ thể"
+    },
+    "common": {
+      "folders": "Thư mục cần giám sát",
+      "foldersDesc": "Chỉ định các thư mục trong nguồn của bạn để giám sát tài liệu mới",
+      "addFolder": "Thêm đường dẫn thư mục",
+      "extensions": "Phần mở rộng tệp",
+      "extensionsDesc": "Loại tệp cần đồng bộ và xử lý bằng OCR.",
+      "addExtension": "Thêm phần mở rộng"
+    },
+    "advanced": {
+      "title": "Cài đặt nâng cao",
+      "description": "Cấu hình đồng bộ tự động và các tùy chọn nâng cao",
+      "enableAutoSync": "Bật đồng bộ tự động",
+      "autoSyncDesc": "Tự động đồng bộ tệp theo lịch",
+      "autoSyncDescLocal": "Tự động quét tệp mới theo lịch",
+      "autoSyncDescS3": "Tự động kiểm tra đối tượng mới theo lịch",
+      "syncInterval": "Khoảng thời gian đồng bộ (phút)",
+      "syncIntervalHelper": "Tần suất kiểm tra tệp mới (15 phút - 24 giờ)",
+      "syncIntervalHelperLocal": "Tần suất quét tệp mới (15 phút - 24 giờ)",
+      "syncIntervalHelperS3": "Tần suất kiểm tra đối tượng mới (15 phút - 24 giờ)"
+    },
+    "estimation": {
+      "title": "Ước tính thu thập",
+      "description": "Ước tính số tệp sẽ được xử lý và thời gian cần thiết.",
+      "estimate": "Ước tính thu thập",
+      "estimating": "Đang ước tính...",
+      "analyzing": "Đang phân tích thư mục và đếm tệp...",
+      "results": "Kết quả ước tính",
+      "files": "Tệp ước tính",
+      "time": "Thời gian ước tính",
+      "size": "Kích thước ước tính"
+    },
+    "dialog": {
+      "editTitle": "Chỉnh sửa nguồn",
+      "createTitle": "Tạo nguồn mới",
+      "editSubtitle": "Cập nhật cấu hình nguồn của bạn",
+      "createSubtitle": "Kết nối nguồn tài liệu mới"
+    },
+    "sync": {
+      "quickSyncDesc": "Đồng bộ tăng dần nhanh sử dụng ETag. Chỉ xử lý tệp mới hoặc đã thay đổi.",
+      "deepScanDesc": "Quét lại hoàn toàn và đặt lại kỳ vọng ETag. Dùng để khắc phục sự cố đồng bộ."
+    },
+    "validation": {
+      "healthy": "Khỏe mạnh",
+      "warning": "Cảnh báo",
+      "critical": "Nghiêm trọng",
+      "validating": "Đang xác thực",
+      "unknown": "Không xác định",
+      "statusUnknown": "Trạng thái xác thực không xác định",
+      "inProgress": "Đang kiểm tra xác thực",
+      "healthScore": "Điểm sức khỏe: {{score}}",
+      "healthScoreIssues": "Điểm sức khỏe: {{score}} - Phát hiện sự cố",
+      "healthScoreCritical": "Điểm sức khỏe: {{score}} - Sự cố nghiêm trọng"
+    },
+    "delete": {
+      "title": "Xóa nguồn",
+      "message": "Bạn có chắc chắn muốn xóa nguồn này?",
+      "warning": "Hành động này không thể hoàn tác. Tất cả lịch sử đồng bộ và cài đặt sẽ bị mất.",
+      "deleting": "Đang xóa..."
+    },
+    "messages": {
+      "createSuccess": "Nguồn đã được tạo thành công",
+      "updateSuccess": "Nguồn đã được cập nhật thành công",
+      "deleteSuccess": "Nguồn đã được xóa thành công",
+      "syncStartSuccess": "Đồng bộ nhanh đã bắt đầu thành công",
+      "deepScanSuccess": "Quét sâu đã bắt đầu thành công",
+      "syncStopSuccess": "Đồng bộ đã dừng thành công",
+      "connectionSuccess": "Kết nối thành công!",
+      "estimationSuccess": "Ước tính thu thập hoàn thành"
+    },
+    "errors": {
+      "loadFailed": "Không thể tải nguồn",
+      "saveFailed": "Không thể lưu nguồn",
+      "deleteFailed": "Không thể xóa nguồn",
+      "testConnectionFailed": "Không thể kiểm tra kết nối",
+      "syncStartFailed": "Không thể bắt đầu đồng bộ",
+      "syncStopFailed": "Không thể dừng đồng bộ",
+      "deepScanFailed": "Không thể bắt đầu quét sâu",
+      "estimateFailed": "Không thể ước tính thu thập",
+      "connectionFailed": "Kết nối thất bại",
+      "duplicateName": "Nguồn có tên này đã tồn tại. Vui lòng chọn tên khác.",
+      "invalidConfig": "Cấu hình nguồn không hợp lệ. Vui lòng kiểm tra cài đặt và thử lại.",
+      "authFailed": "Xác thực thất bại. Vui lòng xác minh thông tin đăng nhập.",
+      "connectionError": "Không thể kết nối với nguồn. Vui lòng kiểm tra mạng và cài đặt máy chủ.",
+      "invalidPath": "Đường dẫn không hợp lệ. Vui lòng kiểm tra đường dẫn thư mục và thử lại.",
+      "notFound": "Không tìm thấy nguồn. Nguồn có thể đã bị xóa.",
+      "syncInProgress": "Không thể xóa nguồn trong khi đồng bộ đang diễn ra. Vui lòng dừng đồng bộ trước.",
+      "alreadySyncing": "Nguồn đang đồng bộ. Vui lòng chờ đồng bộ hiện tại hoàn thành.",
+      "cannotConnect": "Không thể kết nối với nguồn. Vui lòng kiểm tra kết nối và thử lại.",
+      "authFailedSource": "Xác thực thất bại. Vui lòng xác minh thông tin đăng nhập nguồn.",
+      "sourceDeleted": "Không tìm thấy nguồn. Nguồn có thể đã bị xóa.",
+      "connectionFailedUrl": "Kết nối thất bại. Vui lòng kiểm tra URL máy chủ và kết nối mạng.",
+      "authFailedCredentials": "Xác thực thất bại. Vui lòng xác minh tên đăng nhập và mật khẩu.",
+      "invalidFolderPath": "Đường dẫn không hợp lệ. Vui lòng kiểm tra đường dẫn thư mục.",
+      "invalidSettings": "Cấu hình không hợp lệ. Vui lòng xem xét cài đặt của bạn.",
+      "timeout": "Kết nối hết thời gian. Vui lòng kiểm tra mạng và thử lại.",
+      "deepScanWebdavOnly": "Quét sâu chỉ được hỗ trợ cho nguồn WebDAV",
+      "notSyncing": "Nguồn hiện không đồng bộ"
+    },
+    "labels": {
+      "recommended": "Được khuyến nghị",
+      "notAvailable": "Không có sẵn"
+    },
+    "urlPreview": {
+      "title": "Ví dụ URL đồng bộ:",
+      "legend": {
+        "serverUrl": "URL máy chủ",
+        "webdavPath": "Đường dẫn WebDAV",
+        "bucketPrefix": "Bucket/Tiền tố",
+        "watchDirectory": "Thư mục theo dõi",
+        "exampleFile": "Tệp ví dụ"
+      }
+    }
+  },
+  "metadata": {
+    "title": "Thông tin văn bản",
+    "soHieu": "Số hiệu",
+    "ngayBanHanh": "Ngày ban hành",
+    "coQuanBanHanh": "Cơ quan ban hành",
+    "diaDanh": "Địa danh",
+    "loaiVanBan": "Loại văn bản",
+    "nguoiKy": "Người ký",
+    "doMat": "Độ mật",
+    "doKhan": "Độ khẩn",
+    "linhVuc": "Lĩnh vực",
+    "trichYeu": "Trích yếu",
+    "loaiVanBanOptions": {
+      "Quyet dinh": "Quyết định",
+      "Cong van": "Công văn",
+      "Thong bao": "Thông báo",
+      "Nghi dinh": "Nghị định",
+      "Chi thi": "Chỉ thị",
+      "Bao cao": "Báo cáo",
+      "To trinh": "Tờ trình",
+      "Ke hoach": "Kế hoạch",
+      "Huong dan": "Hướng dẫn",
+      "Bien ban": "Biên bản",
+      "Thong tu": "Thông tư",
+      "Nghi quyet": "Nghị quyết"
+    },
+    "doMatOptions": {
+      "Thuong": "Thường",
+      "Mat": "Mật",
+      "Toi mat": "Tối mật",
+      "Tuyet mat": "Tuyệt mật"
+    },
+    "doKhanOptions": {
+      "Thuong": "Thường",
+      "Khan": "Khẩn",
+      "Thuong khan": "Thượng khẩn",
+      "Hoa toc": "Hỏa tốc"
+    }
+  },
+  "docxExport": {
+    "exportButton": "Xuất DOCX",
+    "previewTitle": "Xem trước văn bản",
+    "editContent": "Chỉnh sửa nội dung",
+    "downloadDocx": "Tải DOCX",
+    "quocHieu": "CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM",
+    "tieuNgu": "Độc lập - Tự do - Hạnh phúc",
+    "noiNhan": "Nơi nhận"
+  }
+}

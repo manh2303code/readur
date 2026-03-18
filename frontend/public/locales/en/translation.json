@@ -1507,5 +1507,53 @@
         "exampleFile": "Example File"
       }
     }
+  },
+  "metadata": {
+    "title": "Document Information",
+    "soHieu": "Document Number",
+    "ngayBanHanh": "Issue Date",
+    "coQuanBanHanh": "Issuing Authority",
+    "diaDanh": "Locality",
+    "loaiVanBan": "Document Type",
+    "nguoiKy": "Signer",
+    "doMat": "Classification",
+    "doKhan": "Urgency",
+    "linhVuc": "Field/Domain",
+    "trichYeu": "Summary",
+    "loaiVanBanOptions": {
+      "Quyet dinh": "Decision",
+      "Cong van": "Official Letter",
+      "Thong bao": "Announcement",
+      "Nghi dinh": "Decree",
+      "Chi thi": "Directive",
+      "Bao cao": "Report",
+      "To trinh": "Proposal",
+      "Ke hoach": "Plan",
+      "Huong dan": "Guideline",
+      "Bien ban": "Minutes",
+      "Thong tu": "Circular",
+      "Nghi quyet": "Resolution"
+    },
+    "doMatOptions": {
+      "Thuong": "Normal",
+      "Mat": "Confidential",
+      "Toi mat": "Secret",
+      "Tuyet mat": "Top Secret"
+    },
+    "doKhanOptions": {
+      "Thuong": "Normal",
+      "Khan": "Urgent",
+      "Thuong khan": "Very Urgent",
+      "Hoa toc": "Immediate"
+    }
+  },
+  "docxExport": {
+    "exportButton": "Export DOCX",
+    "previewTitle": "Document Preview",
+    "editContent": "Edit Content",
+    "downloadDocx": "Download DOCX",
+    "quocHieu": "SOCIALIST REPUBLIC OF VIETNAM",
+    "tieuNgu": "Independence - Freedom - Happiness",
+    "noiNhan": "Recipients"
   }
 }

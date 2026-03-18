@@ -8,6 +8,7 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
+    lng: 'vi',
     fallbackLng: 'en',
     debug: import.meta.env.DEV,
 
