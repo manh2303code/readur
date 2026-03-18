@@ -5,6 +5,7 @@ use utoipa::{ToSchema, IntoParams};
 use serde_json;
 
 use super::document::Document;
+use super::document_metadata::DocumentMetadata;
 
 #[derive(Debug, Serialize, Deserialize, ToSchema)]
 pub struct SearchSnippet {
@@ -100,6 +101,9 @@ pub struct DocumentResponse {
     /// Additional metadata from source system (EXIF data, PDF metadata, custom attributes, etc.)
     #[serde(skip_serializing_if = "Option::is_none", default)]
     pub source_metadata: Option<serde_json::Value>,
+    /// Vietnamese document metadata (if present)
+    #[serde(skip_serializing_if = "Option::is_none", default)]
+    pub metadata: Option<DocumentMetadata>,
 }
 
 #[derive(Debug, Serialize, Deserialize, ToSchema)]
@@ -298,6 +302,7 @@ impl From<Document> for DocumentResponse {
             file_owner: doc.file_owner,
             file_group: doc.file_group,
             source_metadata: doc.source_metadata,
+            metadata: None, // Populated separately where needed
         }
     }
 }

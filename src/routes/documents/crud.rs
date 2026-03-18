@@ -10,6 +10,7 @@ use tracing::{debug, error, info, warn};
 
 use crate::{
     auth::AuthUser,
+    db::document_metadata as metadata_db,
     ingestion::document_ingestion::{DocumentIngestionService, IngestionResult},
     models::DocumentResponse,
     AppState,
@@ -368,6 +369,12 @@ pub async fn get_document_by_id(
     let mut response = DocumentResponse::from(document);
     response.labels = labels;
     response.username = username;
+
+    // Fetch Vietnamese document metadata if present
+    response.metadata = metadata_db::get_metadata(&state.db.pool, document_id)
+        .await
+        .ok()
+        .flatten();
 
     // Populate OCR progress from ocr_queue when actively processing
     if response.ocr_status.as_deref() == Some("processing") {
